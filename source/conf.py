@@ -19,6 +19,8 @@ extensions = ['recommonmark', 'sphinx_markdown_tables', "nbsphinx",
 
 templates_path = ['_templates']
 exclude_patterns = []
+nbsphinx_execute = 'never'
+
 
 
 

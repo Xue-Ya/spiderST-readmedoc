@@ -23,7 +23,7 @@ SPIDER constructs cell-cell interaction interfaces with minimized Dirichlet ener
    :maxdepth: 2
    :caption: Tutorials
 
-   PDAC
+   tutorials
 
 
 
