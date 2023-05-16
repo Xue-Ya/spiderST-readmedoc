@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Human brain DFPLC (Visium) - semi-supervised clustering &mdash; spider-st v0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Human brain DFPLC (Visium) - unsupervised clustering" href="human_brain_DLPFC_unsupervised_clustering.html" />
+    <link rel="prev" title="Tutorials" href="../tutorials.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #6a65d8" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Human brain DFPLC (Visium) - semi-supervised clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="human_brain_DLPFC_unsupervised_clustering.html">Human brain DFPLC (Visium) - unsupervised clustering</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #6a65d8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spider-st</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tutorials.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Human brain DFPLC (Visium) - semi-supervised clustering</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/human_brain_DLPFC_semisupervised_clustering.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Human-brain-DFPLC-(Visium)---semi-supervised-clustering">
+<h1>Human brain DFPLC (Visium) - semi-supervised clustering<a class="headerlink" href="#Human-brain-DFPLC-(Visium)---semi-supervised-clustering" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spider</span>
+<span class="kn">from</span> <span class="nn">spider</span> <span class="kn">import</span> <span class="n">SPIDER</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">=</span><span class="n">SPIDER</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">anndata</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">adjusted_rand_score</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_name</span> <span class="o">=</span> <span class="s1">&#39;151673&#39;</span>
+<span class="n">method_i</span> <span class="o">=</span> <span class="s1">&#39;BayesSpace&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../example_data/human_brain_DLPFC/idata.h5ad&#39;</span><span class="p">)</span>
+<span class="n">idata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 7003 × 1253
+    obs: &#39;A&#39;, &#39;B&#39;, &#39;A_row&#39;, &#39;A_col&#39;, &#39;B_row&#39;, &#39;B_col&#39;, &#39;A_label&#39;, &#39;B_label&#39;, &#39;A_label_int&#39;, &#39;B_label_int&#39;, &#39;label_1&#39;, &#39;label_2&#39;, &#39;label_int&#39;, &#39;label&#39;, &#39;row&#39;, &#39;col&#39;, &#39;dist&#39;, &#39;n_genes_by_counts&#39;, &#39;log1p_n_genes_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;total_count&#39;, &#39;som_node&#39;
+    var: &#39;n_cells_by_counts&#39;, &#39;mean_counts&#39;, &#39;log1p_mean_counts&#39;, &#39;pct_dropout_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;n_cells&#39;, &#39;is_svi&#39;, &#39;label&#39;
+    uns: &#39;cell_meta&#39;, &#39;lr_meta&#39;
+    obsm: &#39;pattern_score&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">scored_spot_interface</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key cell_pattern in idata.uns
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;../example_data/human_brain_DLPFC/adata.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 3607 × 33538
+    obs: &#39;barcode&#39;, &#39;sample_name&#39;, &#39;tissue&#39;, &#39;row&#39;, &#39;col&#39;, &#39;imagerow&#39;, &#39;imagecol&#39;, &#39;Cluster&#39;, &#39;height&#39;, &#39;width&#39;, &#39;sum_umi&#39;, &#39;sum_gene&#39;, &#39;subject&#39;, &#39;position&#39;, &#39;replicate&#39;, &#39;subject_position&#39;, &#39;discard&#39;, &#39;key&#39;, &#39;cell_count&#39;, &#39;SNN_k50_k4&#39;, &#39;SNN_k50_k5&#39;, &#39;SNN_k50_k6&#39;, &#39;SNN_k50_k7&#39;, &#39;SNN_k50_k8&#39;, &#39;SNN_k50_k9&#39;, &#39;SNN_k50_k10&#39;, &#39;SNN_k50_k11&#39;, &#39;SNN_k50_k12&#39;, &#39;SNN_k50_k13&#39;, &#39;SNN_k50_k14&#39;, &#39;SNN_k50_k15&#39;, &#39;SNN_k50_k16&#39;, &#39;SNN_k50_k17&#39;, &#39;SNN_k50_k18&#39;, &#39;SNN_k50_k19&#39;, &#39;SNN_k50_k20&#39;, &#39;SNN_k50_k21&#39;, &#39;SNN_k50_k22&#39;, &#39;SNN_k50_k23&#39;, &#39;SNN_k50_k24&#39;, &#39;SNN_k50_k25&#39;, &#39;SNN_k50_k26&#39;, &#39;SNN_k50_k27&#39;, &#39;SNN_k50_k28&#39;, &#39;GraphBased&#39;, &#39;Maynard&#39;, &#39;Martinowich&#39;, &#39;Layer&#39;, &#39;layer_guess&#39;, &#39;layer_guess_reordered&#39;, &#39;layer_guess_reordered_short&#39;, &#39;expr_chrM&#39;, &#39;expr_chrM_ratio&#39;, &#39;SpatialDE_PCA&#39;, &#39;SpatialDE_pool_PCA&#39;, &#39;HVG_PCA&#39;, &#39;pseudobulk_PCA&#39;, &#39;markers_PCA&#39;, &#39;SpatialDE_UMAP&#39;, &#39;SpatialDE_pool_UMAP&#39;, &#39;HVG_UMAP&#39;, &#39;pseudobulk_UMAP&#39;, &#39;markers_UMAP&#39;, &#39;SpatialDE_PCA_spatial&#39;, &#39;SpatialDE_pool_PCA_spatial&#39;, &#39;HVG_PCA_spatial&#39;, &#39;pseudobulk_PCA_spatial&#39;, &#39;markers_PCA_spatial&#39;, &#39;SpatialDE_UMAP_spatial&#39;, &#39;SpatialDE_pool_UMAP_spatial&#39;, &#39;HVG_UMAP_spatial&#39;, &#39;pseudobulk_UMAP_spatial&#39;, &#39;markers_UMAP_spatial&#39;, &#39;sizeFactor&#39;, &#39;SEDR&#39;, &#39;Seurat&#39;, &#39;SpaGCN&#39;, &#39;BayesSpace&#39;, &#39;stLearn&#39;
+    var: &#39;source&#39;, &#39;type&#39;, &#39;gene_id&#39;, &#39;gene_version&#39;, &#39;gene_name&#39;, &#39;gene_source&#39;, &#39;gene_biotype&#39;, &#39;gene_search&#39;, &#39;is_top_hvg&#39;, &#39;is.HVG&#39;
+    uns: &#39;BayesSpace_colors&#39;, &#39;SEDR_colors&#39;, &#39;Seurat_colors&#39;, &#39;SpaGCN_colors&#39;, &#39;layer_guess_colors&#39;, &#39;stLearn_colors&#39;
+    obsm: &#39;spatial&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;layer_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;SEDR&#39;</span><span class="p">,</span> <span class="s1">&#39;Seurat&#39;</span><span class="p">,</span> <span class="s1">&#39;SpaGCN&#39;</span><span class="p">,</span> <span class="s1">&#39;BayesSpace&#39;</span><span class="p">,</span> <span class="s1">&#39;stLearn&#39;</span><span class="p">],</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_7_0.png" src="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_7_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[106]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">relabel_interface</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s1">&#39;SEDR&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">supervised_spot_clust</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;SEDR&#39;</span><span class="p">,</span> <span class="n">n_cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;layer_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;SEDR&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_supervised&#39;</span><span class="p">],</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SPIDER ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_supervised&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SEDR ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;SEDR&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key label_SEDR in idata.obs
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_8_1.png" src="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_8_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SPIDER ARI: 0.5548583214738552
+SEDR ARI: 0.513966214145033
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[105]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">relabel_interface</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s1">&#39;Seurat&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">supervised_spot_clust</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Seurat&#39;</span><span class="p">,</span> <span class="n">n_cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;layer_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;Seurat&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_supervised&#39;</span><span class="p">],</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SPIDER ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_supervised&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Seurat ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Seurat&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key label_Seurat in idata.obs
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_9_1.png" src="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_9_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SPIDER ARI: 0.5206765042449075
+Seurat ARI: 0.388255543520589
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">relabel_interface</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s1">&#39;SpaGCN&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">supervised_spot_clust</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;SpaGCN&#39;</span><span class="p">,</span> <span class="n">n_cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;layer_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;SpaGCN&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_supervised&#39;</span><span class="p">],</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SPIDER ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_supervised&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SpaGCN ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;SpaGCN&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key label_SpaGCN in idata.obs
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_10_1.png" src="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_10_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SPIDER ARI: 0.512486217605031
+SpaGCN ARI: 0.4603270424008769
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[102]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">relabel_interface</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s1">&#39;BayesSpace&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">supervised_spot_clust</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;BayesSpace&#39;</span><span class="p">,</span> <span class="n">n_cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;layer_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;BayesSpace&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_supervised&#39;</span><span class="p">],</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SPIDER ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_supervised&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;BayesSpace ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;BayesSpace&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key label_BayesSpace in idata.obs
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_11_1.png" src="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_11_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SPIDER ARI: 0.5586116467710605
+BayesSpace ARI: 0.549251096636023
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">relabel_interface</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s1">&#39;stLearn&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">supervised_spot_clust</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;stLearn&#39;</span><span class="p">,</span> <span class="n">n_cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;layer_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;stLearn&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_supervised&#39;</span><span class="p">],</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SPIDER ARI: </span><span class="si">{</span><span class="n">adjusted_rand_scsore</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_supervised&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;stLearn ARI: </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;layer_guess&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;stLearn&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key label_stLearn in idata.obs
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_12_1.png" src="../_images/notebooks_human_brain_DLPFC_semisupervised_clustering_12_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SPIDER ARI: 0.4902784495816616
+stLearn ARI: 0.3045914036879907
+</pre></div></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorials.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="human_brain_DLPFC_unsupervised_clustering.html" class="btn btn-neutral float-right" title="Human brain DFPLC (Visium) - unsupervised clustering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Li Shiying.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

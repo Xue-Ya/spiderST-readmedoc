@@ -28,5 +28,12 @@ nbsphinx_execute = 'never'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
+html_logo = "logo.png"
+html_theme_options = {
+    'logo_only': True,
+    'style_nav_header_background': '#6a65d8',
+}
 html_static_path = ['_static']
-html_logo = "_static/logo.jpeg"
+html_css_files = [
+    'css/custom.css',
+]
