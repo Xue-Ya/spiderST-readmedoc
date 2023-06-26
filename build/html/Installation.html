@@ -47,6 +47,7 @@
               <p class="caption" role="heading"><span class="caption-text">General</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pypi">PyPI</a></li>
 </ul>
 </li>
@@ -84,6 +85,42 @@
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <p>SPIDER requires Python version over 3.7 to run.</p>
+<section id="prerequisite">
+<h2>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create -n spider python=3.8</span>
+<span class="go">conda activate spider</span>
+<span class="go">conda install -c conda-forge somoclu fa2</span>
+</pre></div>
+</div>
+<p>Make sure you have scgco installed with</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install Cython</span>
+<span class="go">SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=TRUE \</span>
+<span class="go">    pip install sklearn</span>
+<span class="go">pip install scgco</span>
+</pre></div>
+</div>
+<p>If you have problem installing the pygco package required by scgco, try clone the pygco repo, in which you need to change the name in the setup function in setup.py from gco-wrapper to pygco, and install pygco with setup.py</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/Borda/pyGCO.git</span>
+<span class="go">cd pyGCO</span>
+<span class="go">&lt;!-- change name in setup.py from gco-wrapper to pygco --&gt;</span>
+<span class="go">pip install -r requirements.txt</span>
+<span class="go">python setup.py install</span>
+</pre></div>
+</div>
+<p>To also use the R packages in SPIDER, you need to first install:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;SpatialExperiment&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;scran&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;nnSVG&quot;</span><span class="p">)</span>
+
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;devtools&#39;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;xzhoulab/SPARK&#39;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;linxihui/NNLM&#39;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;ZJUFanLab/SpaTalk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="pypi">
 <h2>PyPI<a class="headerlink" href="#pypi" title="Permalink to this heading"></a></h2>
 <p>SPIDER is availabel on PyPI:</p>

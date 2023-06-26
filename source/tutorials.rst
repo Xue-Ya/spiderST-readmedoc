@@ -2,5 +2,10 @@ Tutorials
 =====================================
 
 .. nbgallery::
-   notebooks/human_brain_DLPFC_semisupervised_clustering
-   notebooks/human_brain_DLPFC_unsupervised_clustering
+   notebooks/bresat_cancer
+   notebooks/DLPFC
+   notebooks/mouse_brain
+   notebooks/mouse_embryo
+   notebooks/mouse_lung
+   notebooks/PDAC
+   
