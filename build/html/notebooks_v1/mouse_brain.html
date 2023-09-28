@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mouse brain &mdash; spider-st v0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #6a65d8" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #6a65d8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spider-st</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">mouse brain</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks_v1/mouse_brain.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mouse-brain">
+<h1>mouse brain<a class="headerlink" href="#mouse-brain" title="Permalink to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">spider</span> <span class="kn">import</span> <span class="n">SPIDER</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SPIDER</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">anndata</span>
+<span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">squidpy</span> <span class="k">as</span> <span class="nn">sq</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># use cpus only</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CUDA_VISIBLE_DEVICES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;-1&#39;</span>
+<span class="n">TF_ENABLE_ONEDNN_OPTS</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2023-06-25 16:26:33.669811: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-06-25 16:26:33.679473: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-25 16:26:33.762191: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-25 16:26:33.763046: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-06-25 16:26:34.655275: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_name</span> <span class="o">=</span> <span class="s1">&#39;mousebrain&#39;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="s1">&#39;slide-seq-v2&#39;</span>
+<span class="n">out_f</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../datasets/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">/&#39;</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">out_f</span><span class="si">}</span><span class="s1">/adata.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 41786 × 4000
+    obs: &#39;barcode&#39;, &#39;x&#39;, &#39;y&#39;, &#39;n_genes_by_counts&#39;, &#39;log1p_n_genes_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;pct_counts_in_top_50_genes&#39;, &#39;pct_counts_in_top_100_genes&#39;, &#39;pct_counts_in_top_200_genes&#39;, &#39;pct_counts_in_top_500_genes&#39;, &#39;total_counts_MT&#39;, &#39;log1p_total_counts_MT&#39;, &#39;pct_counts_MT&#39;, &#39;n_counts&#39;, &#39;leiden&#39;, &#39;cluster&#39;
+    var: &#39;MT&#39;, &#39;n_cells_by_counts&#39;, &#39;mean_counts&#39;, &#39;log1p_mean_counts&#39;, &#39;pct_dropout_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;n_cells&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;
+    uns: &#39;cluster_colors&#39;, &#39;cluster_key&#39;, &#39;coord_type&#39;, &#39;gearyC&#39;, &#39;hvg&#39;, &#39;is_human&#39;, &#39;leiden&#39;, &#39;leiden_colors&#39;, &#39;neighbors&#39;, &#39;pca&#39;, &#39;spatial_neighbors&#39;, &#39;umap&#39;
+    obsm: &#39;X_pca&#39;, &#39;X_umap&#39;, &#39;deconvolution_results&#39;, &#39;spatial&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;connectivities&#39;, &#39;distances&#39;, &#39;spatial_connectivities&#39;, &#39;spatial_distances&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;deconvolution_results&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Interneurons</th>
+      <th>Subiculum_Entorhinal_cl2</th>
+      <th>Subiculum_Entorhinal_cl3</th>
+      <th>DentatePyramids</th>
+      <th>CA1_CA2_CA3_Subiculum</th>
+      <th>Mural</th>
+      <th>Astrocytes</th>
+      <th>Oligodendrocytes</th>
+      <th>Polydendrocytes</th>
+      <th>Microglia</th>
+      <th>Ependymal</th>
+      <th>Endothelial_Tip</th>
+      <th>Neurogenesis</th>
+      <th>Endothelial_Stalk</th>
+      <th>barcode</th>
+      <th>max_cell_type</th>
+      <th>maxval</th>
+      <th>thresh_ct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AACGTCATAATCGT</th>
+      <td>0.113249</td>
+      <td>0.203010</td>
+      <td>0.086060</td>
+      <td>0.247319</td>
+      <td>0.153769</td>
+      <td>0.002455</td>
+      <td>0.072134</td>
+      <td>0.022327</td>
+      <td>0.008712</td>
+      <td>0.065562</td>
+      <td>0.003853</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.021550</td>
+      <td>AACGTCATAATCGT</td>
+      <td>4</td>
+      <td>0.247319</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>TACTTTAGCGCAGT</th>
+      <td>0.055718</td>
+      <td>0.077973</td>
+      <td>0.048517</td>
+      <td>0.187755</td>
+      <td>0.195889</td>
+      <td>0.040198</td>
+      <td>0.126317</td>
+      <td>0.071605</td>
+      <td>0.052353</td>
+      <td>0.013668</td>
+      <td>0.016075</td>
+      <td>0.044060</td>
+      <td>0.012159</td>
+      <td>0.057714</td>
+      <td>TACTTTAGCGCAGT</td>
+      <td>5</td>
+      <td>0.195889</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>CATGCCTGGGTTCG</th>
+      <td>0.108751</td>
+      <td>0.228845</td>
+      <td>0.109581</td>
+      <td>0.246070</td>
+      <td>0.115723</td>
+      <td>0.006306</td>
+      <td>0.071186</td>
+      <td>0.015768</td>
+      <td>0.000000</td>
+      <td>0.059735</td>
+      <td>0.000000</td>
+      <td>0.013702</td>
+      <td>0.000000</td>
+      <td>0.024332</td>
+      <td>CATGCCTGGGTTCG</td>
+      <td>4</td>
+      <td>0.246070</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>TCGATATGGCACAA</th>
+      <td>0.108163</td>
+      <td>0.029694</td>
+      <td>0.112905</td>
+      <td>0.172960</td>
+      <td>0.122573</td>
+      <td>0.014295</td>
+      <td>0.065901</td>
+      <td>0.031834</td>
+      <td>0.096153</td>
+      <td>0.034155</td>
+      <td>0.094124</td>
+      <td>0.065322</td>
+      <td>0.011114</td>
+      <td>0.040808</td>
+      <td>TCGATATGGCACAA</td>
+      <td>4</td>
+      <td>0.172960</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>TTATCTGACGAAGC</th>
+      <td>0.065790</td>
+      <td>0.236463</td>
+      <td>0.012458</td>
+      <td>0.233441</td>
+      <td>0.145091</td>
+      <td>0.014810</td>
+      <td>0.097935</td>
+      <td>0.052590</td>
+      <td>0.023642</td>
+      <td>0.008578</td>
+      <td>0.014275</td>
+      <td>0.058715</td>
+      <td>0.000000</td>
+      <td>0.036213</td>
+      <td>TTATCTGACGAAGC</td>
+      <td>2</td>
+      <td>0.236463</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>CACCCGATGACTCC</th>
+      <td>0.189667</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.037157</td>
+      <td>0.007935</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.246184</td>
+      <td>0.392414</td>
+      <td>0.094163</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.016853</td>
+      <td>0.015627</td>
+      <td>CACCCGATGACTCC</td>
+      <td>9</td>
+      <td>0.392414</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>CTTGATTAGGCAGG</th>
+      <td>0.375533</td>
+      <td>0.123520</td>
+      <td>0.000000</td>
+      <td>0.036172</td>
+      <td>0.003471</td>
+      <td>0.000000</td>
+      <td>0.033918</td>
+      <td>0.006818</td>
+      <td>0.024570</td>
+      <td>0.308541</td>
+      <td>0.000000</td>
+      <td>0.078775</td>
+      <td>0.008685</td>
+      <td>0.000000</td>
+      <td>CTTGATTAGGCAGG</td>
+      <td>1</td>
+      <td>0.375533</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>GAGTTCCTAAGCGG</th>
+      <td>0.063493</td>
+      <td>0.050532</td>
+      <td>0.135440</td>
+      <td>0.349993</td>
+      <td>0.257504</td>
+      <td>0.000000</td>
+      <td>0.116491</td>
+      <td>0.000000</td>
+      <td>0.019085</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.007462</td>
+      <td>0.000000</td>
+      <td>GAGTTCCTAAGCGG</td>
+      <td>4</td>
+      <td>0.349993</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>GCGCTCAGTGCTCT</th>
+      <td>0.313457</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.324040</td>
+      <td>0.061320</td>
+      <td>0.032552</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.086062</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.182568</td>
+      <td>GCGCTCAGTGCTCT</td>
+      <td>4</td>
+      <td>0.324040</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>GAGATAACAGTTCC</th>
+      <td>0.100265</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.162665</td>
+      <td>0.094934</td>
+      <td>0.006698</td>
+      <td>0.244409</td>
+      <td>0.130942</td>
+      <td>0.000000</td>
+      <td>0.004975</td>
+      <td>0.000000</td>
+      <td>0.121870</td>
+      <td>0.001284</td>
+      <td>0.131958</td>
+      <td>GAGATAACAGTTCC</td>
+      <td>7</td>
+      <td>0.244409</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>41786 rows × 18 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">no_spatalk</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">:</span>
+    <span class="n">no_spatalk</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">idata</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">prep</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">out_f</span><span class="p">,</span> <span class="n">R_path</span><span class="p">,</span> <span class="n">cluster_key</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;cluster_key&#39;</span><span class="p">],</span> <span class="n">is_human</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;is_human&#39;</span><span class="p">],</span> <span class="n">coord_type</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;coord_type&#39;</span><span class="p">],</span> <span class="n">no_spatalk</span><span class="o">=</span><span class="n">no_spatalk</span><span class="p">)</span>
+<span class="n">idata</span><span class="p">,</span> <span class="n">meta_idata</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">find_svi</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">out_f</span><span class="p">,</span> <span class="n">R_path</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">idata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">out_f</span><span class="si">}</span><span class="s1">/idata.h5ad&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">out_f</span><span class="si">}</span><span class="s1">/idata.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>metrics</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svi_df</span><span class="p">,</span> <span class="n">svi_df_strict</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">svi</span><span class="o">.</span><span class="n">combine_SVI</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">svi</span><span class="o">.</span><span class="n">eva_SVI</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">svi_df_strict</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_metric.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Using the results from SVI identification methods: [&#39;SOMDE&#39; &#39;SpatialDE&#39; &#39;SPARKX&#39; &#39;nnSVG&#39; &#39;scGCO&#39; &#39;gearyC&#39; &#39;moranI&#39;]
+188/188 SVIs identified (threshold=0.01).
+evaluating with [&#39;moranI&#39; &#39;gearyC&#39; &#39;SOMDE&#39; &#39;nnSVG&#39;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_8_1.png" src="../_images/notebooks_v1_mouse_brain_8_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">adata_moranI</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">out_f</span><span class="o">=</span><span class="n">out_f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">merged_df</span><span class="p">,</span><span class="n">lri_pw_list</span><span class="p">,</span><span class="n">gene_lr_list</span><span class="p">,</span><span class="n">gene_pw_list</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">svg_svi_relation</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">idata</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mouse brain&#39;</span><span class="p">,</span> <span class="n">is_human</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;is_human&#39;</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_relation.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 1000/1000 [05:59&lt;00:00,  2.78/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mouse KEGG_2019_Mouse
+Using mouse LR pair dataset.
+50
+0.29785379706656556 0.1348194701533406 0.05931934414862475
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_9_2.png" src="../_images/notebooks_v1_mouse_brain_9_2.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gseapy</span>
+<span class="n">membership</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">merged_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Term&#39;</span><span class="p">)[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Term&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;group name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">membership</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">merged_df</span><span class="o">.</span><span class="n">Term</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">rename_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;1-0-0&#39;</span><span class="p">:</span> <span class="s1">&#39;LR&#39;</span><span class="p">,</span> <span class="s1">&#39;1-0-1&#39;</span><span class="p">:</span><span class="s1">&#39;SVI&amp;LR&#39;</span><span class="p">,</span> <span class="s1">&#39;0-0-1&#39;</span><span class="p">:</span><span class="s1">&#39;SVI&#39;</span><span class="p">,</span> <span class="s1">&#39;1-1-1&#39;</span><span class="p">:</span><span class="s1">&#39;All&#39;</span><span class="p">,</span> <span class="s1">&#39;0-1-0&#39;</span><span class="p">:</span><span class="s1">&#39;SVG&#39;</span><span class="p">,</span> <span class="s1">&#39;0-1-1&#39;</span><span class="p">:</span><span class="s1">&#39;SVI&amp;SVG&#39;</span>
+<span class="p">}</span>
+<span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;group name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;group name&#39;</span><span class="p">]</span> <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">rename_categories</span><span class="p">(</span><span class="n">rename_dict</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span><span class="n">x_key</span><span class="o">=</span><span class="s1">&#39;group name&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">save</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_relation_enrichment.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">pattern_LRI</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span><span class="n">show_SVI</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_patterns.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_11_0.png" src="../_images/notebooks_v1_mouse_brain_11_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">svi</span><span class="o">.</span><span class="n">eva_pattern</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_pattern_metric.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+p-value annotation legend:
+      ns: p &lt;= 1.00e+00
+       *: 1.00e-02 &lt; p &lt;= 5.00e-02
+      **: 1.00e-03 &lt; p &lt;= 1.00e-02
+     ***: 1.00e-04 &lt; p &lt;= 1.00e-03
+    ****: p &lt;= 1.00e-04
+
+9_no vs. 9_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:3.696e-09 U_stat=8.500e+01
+10_no vs. 10_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:5.319e-03 U_stat=0.000e+00
+11_no vs. 11_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:4.822e-13 U_stat=7.600e+01
+12_no vs. 12_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:5.319e-03 U_stat=0.000e+00
+13_no vs. 13_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:3.406e-09 U_stat=2.500e+01
+8_no vs. 8_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:8.977e-16 U_stat=2.650e+02
+1_no vs. 1_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:5.319e-03 U_stat=0.000e+00
+0_no vs. 0_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:7.626e-09 U_stat=1.530e+02
+2_no vs. 2_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:5.319e-03 U_stat=0.000e+00
+3_no vs. 3_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:1.879e-06 U_stat=5.100e+01
+4_no vs. 4_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:5.689e-05 U_stat=0.000e+00
+5_no vs. 5_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:1.381e-14 U_stat=7.300e+01
+6_no vs. 6_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:8.223e-16 U_stat=1.900e+01
+7_no vs. 7_yes: Mann-Whitney-Wilcoxon test two-sided with Benjamini-Hochberg correction, P_val:1.582e-19 U_stat=1.640e+02
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_12_1.png" src="../_images/notebooks_v1_mouse_brain_12_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df_edge</span><span class="p">,</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">er</span><span class="o">.</span><span class="n">pattern_enrichment_edge</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span><span class="n">is_human</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;is_human&#39;</span><span class="p">])</span>
+<span class="n">merged_df_node</span><span class="p">,</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">er</span><span class="o">.</span><span class="n">pattern_enrichment_node</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span><span class="n">is_human</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;is_human&#39;</span><span class="p">])</span>
+<span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">merged_df_node</span><span class="p">,</span><span class="n">x_key</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">save</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_pattern_enrichment_node.png&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">merged_df_edge</span><span class="p">,</span><span class="n">x_key</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">save</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_pattern_enrichment_edge.png&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Using mouse LR pair dataset.
+No objects to concatenate
+No objects to concatenate
+No objects to concatenate
+No objects to concatenate
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata</span> <span class="o">=</span> <span class="n">idata</span><span class="p">[:,</span> <span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;is_svi&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_lri</span><span class="p">,</span> <span class="n">adata_pattern</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">cell_transform</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;cluster_key&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added key cell_pattern in idata.uns
+Added key cell_score in idata.uns
+Added key interaction_pattern, interaction_score in adata.obsm
+WARNING: Default of the method has been changed to &#39;t-test&#39; from &#39;t-test_overestim_var&#39;
+WARNING: Default of the method has been changed to &#39;t-test&#39; from &#39;t-test_overestim_var&#39;
+Added key rank_interaction_score_groups, rank_interaction_pattern_groups in adata.uns
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">():</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">rank_genes_groups_dotplot</span><span class="p">(</span><span class="n">adata_lri</span><span class="p">,</span> <span class="n">standard_scale</span><span class="o">=</span><span class="s1">&#39;var&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_label_SVI.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING: dendrogram data not found (using key=dendrogram_cluster). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: You’re trying to run this on 188 dimensions of `.X`, if you really want this, set `use_rep=&#39;X&#39;`.
+         Falling back to preprocessing with `sc.pp.pca` and default params.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_16_1.png" src="../_images/notebooks_v1_mouse_brain_16_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">():</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">rank_genes_groups_dotplot</span><span class="p">(</span><span class="n">adata_lri</span><span class="p">,</span> <span class="n">standard_scale</span><span class="o">=</span><span class="s1">&#39;var&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">n_genes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_label_SVI1.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING: dendrogram data not found (using key=dendrogram_cluster). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: You’re trying to run this on 188 dimensions of `.X`, if you really want this, set `use_rep=&#39;X&#39;`.
+         Falling back to preprocessing with `sc.pp.pca` and default params.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_17_1.png" src="../_images/notebooks_v1_mouse_brain_17_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">():</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">rank_genes_groups_dotplot</span><span class="p">(</span><span class="n">adata_pattern</span><span class="p">,</span> <span class="n">standard_scale</span><span class="o">=</span><span class="s1">&#39;var&#39;</span><span class="p">,</span> <span class="n">n_genes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_label_pattern.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING: dendrogram data not found (using key=dendrogram_cluster). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_18_1.png" src="../_images/notebooks_v1_mouse_brain_18_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;deconvolution_results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">pds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">adata_pattern</span><span class="o">.</span><span class="n">var_names</span><span class="p">:</span>
+    <span class="n">pds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">corrwith</span><span class="p">(</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">to_df</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">pointbiserialr</span><span class="p">)[:</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pds_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">pds</span><span class="p">)</span>
+<span class="n">pds_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">adata_pattern</span><span class="o">.</span><span class="n">var_names</span>
+<span class="n">useful_df</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">cluster_i</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">pds_df</span><span class="p">[</span><span class="n">pds_df</span><span class="p">[</span><span class="n">cluster_i</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.3</span><span class="p">][</span><span class="n">cluster_i</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">useful_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useful_df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[11    0.584458
+ Name: DentatePyramids, dtype: float64,
+ 11    0.345473
+ Name: CA1_CA2_CA3_Subiculum, dtype: float64,
+ 9    0.426119
+ 8    0.341142
+ Name: Subiculum_Entorhinal_cl2, dtype: float64,
+ 7     0.573777
+ 10    0.413829
+ Name: Oligodendrocytes, dtype: float64,
+ 0    0.501049
+ Name: Astrocytes, dtype: float64,
+ 5    0.365171
+ Name: Ependymal, dtype: float64,
+ 6    0.434789
+ 2    0.336505
+ Name: Endothelial_Tip, dtype: float64]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cluster_id</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">corrs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cluster_id_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DentatePyramids&#39;</span><span class="p">:</span> <span class="s1">&#39;Dentate Pyramids&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Endothelial_Tip&#39;</span><span class="p">:</span> <span class="s1">&#39;Endothelial Tip&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Oligodendrocytes&#39;</span><span class="p">:</span> <span class="s1">&#39;Oligodendrocytes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Astrocytes&#39;</span><span class="p">:</span> <span class="s1">&#39;Astrocytes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Ependymal&#39;</span><span class="p">:</span> <span class="s1">&#39;Ependymal&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CA1_CA2_CA3_Subiculum&#39;</span><span class="p">:</span> <span class="s2">&quot;CA1/CA2/CA3 Subiculum&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;Subiculum_Entorhinal_cl2&#39;</span><span class="p">:</span> <span class="s2">&quot;Subiculum Entorhinal cl2&quot;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">useful_df</span><span class="p">:</span>
+    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()))</span>
+    <span class="n">corrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">cluster_id</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">cluster</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_id_map</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Dentate Pyramids&#39;,
+ &#39;CA1/CA2/CA3 Subiculum&#39;,
+ &#39;Subiculum Entorhinal cl2&#39;,
+ &#39;Oligodendrocytes&#39;,
+ &#39;Astrocytes&#39;,
+ &#39;Ependymal&#39;,
+ &#39;Endothelial Tip&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useful_df</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">adata_lri</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span>
+<span class="n">adata_pattern</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">)))</span>
+<span class="n">base</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">)):</span>
+    <span class="n">corr</span> <span class="o">=</span>  <span class="n">corrs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">cluster_name</span> <span class="o">=</span> <span class="n">cluster</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">cluster_i</span> <span class="o">=</span> <span class="n">cluster_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;deconvolution_results&#39;</span><span class="p">][</span><span class="n">cluster_i</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="c1"># plt.scatter(adata[adata.obs[&#39;cluster&#39;]==cluster_id].obsm[&#39;spatial&#39;][:,0],adata[adata.obs[&#39;cluster&#39;]==cluster_id].obsm[&#39;spatial&#39;][:,1], c=adata[adata.obs[&#39;cluster&#39;]==cluster_name].obs[&#39;cluster&#39;]==cluster_name, s=5, cmap=&#39;plasma&#39;, vmin=0, edgecolors=&#39;none&#39;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cluster_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">adata_pattern</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">to_df</span><span class="p">()[</span><span class="nb">str</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">])],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pattern </span><span class="si">{</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">label</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s1"> SVIs</span><span class="se">\n</span><span class="s1">corr=</span><span class="si">{</span><span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">corr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">svis</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;pattern_correlation_</span><span class="si">{</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">svi_to_plot</span> <span class="o">=</span> <span class="n">svis</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">svi_to_plot</span><span class="p">)</span>
+    <span class="n">memberships</span> <span class="o">=</span> <span class="n">svis</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;pattern_correlation_</span><span class="si">{</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+        <span class="n">im</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">adata_lri</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">to_df</span><span class="p">()[</span><span class="n">svi_to_plot</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span><span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">svi_to_plot</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1"> corr=</span><span class="si">{</span><span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">memberships</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">base</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_decon_pattern.pdf&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Ntf3_Ntrk3&#39; &#39;Bdnf_Ntrk3&#39;]
+[&#39;Ntf3_Ntrk3&#39; &#39;Bdnf_Ntrk3&#39;]
+[&#39;Efna5_Epha4&#39; &#39;Nxph1_Nrxn3&#39;]
+[&#39;Col9a3_Mag&#39; &#39;Lama2_Itgb4&#39;]
+[&#39;C1qa_Cd93&#39; &#39;Cfh_Itgam&#39;]
+[&#39;Tac2_Tacr1&#39; &#39;Tac1_Tacr1&#39;]
+[&#39;Col1a2_Cd93&#39; &#39;Igf2_Igf1r&#39;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_23_1.png" src="../_images/notebooks_v1_mouse_brain_23_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;cell_meta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs_names</span><span class="p">][</span><span class="s1">&#39;cluster&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">pds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">adata_pattern</span><span class="o">.</span><span class="n">var_names</span><span class="p">:</span>
+    <span class="n">pds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">corrwith</span><span class="p">(</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">to_df</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">pointbiserialr</span><span class="p">)[:</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pds_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">pds</span><span class="p">)</span>
+<span class="n">pds_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">adata_pattern</span><span class="o">.</span><span class="n">var_names</span>
+<span class="n">useful_df</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">cluster_i</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">pds_df</span><span class="p">[</span><span class="n">pds_df</span><span class="p">[</span><span class="n">cluster_i</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.3</span><span class="p">][</span><span class="n">cluster_i</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">useful_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useful_df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[11    0.308023
+ Name: DentatePyramids, dtype: float64,
+ 7     0.451584
+ 10    0.337285
+ Name: Oligodendrocytes, dtype: float64,
+ 0    0.339764
+ Name: Astrocytes, dtype: float64,
+ 5    0.316733
+ Name: Ependymal, dtype: float64,
+ 6    0.362354
+ Name: Endothelial_Tip, dtype: float64]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cluster_id</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">corrs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cluster_id_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DentatePyramids&#39;</span><span class="p">:</span> <span class="s1">&#39;Dentate Pyramids&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Endothelial_Tip&#39;</span><span class="p">:</span> <span class="s1">&#39;Endothelial Tip&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Oligodendrocytes&#39;</span><span class="p">:</span> <span class="s1">&#39;Oligodendrocytes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Astrocytes&#39;</span><span class="p">:</span> <span class="s1">&#39;Astrocytes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Ependymal&#39;</span><span class="p">:</span> <span class="s1">&#39;Ependymal&#39;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">useful_df</span><span class="p">:</span>
+    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()))</span>
+    <span class="n">corrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">cluster_id</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">cluster</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_id_map</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useful_df</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">adata_lri</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span>
+<span class="n">adata_pattern</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">)))</span>
+<span class="n">base</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">)):</span>
+    <span class="n">corr</span> <span class="o">=</span>  <span class="n">corrs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">cluster_name</span> <span class="o">=</span> <span class="n">cluster</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">cluster_i</span> <span class="o">=</span> <span class="n">cluster_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">cluster_i</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="c1"># plt.scatter(adata[adata.obs[&#39;cluster&#39;]==cluster_id].obsm[&#39;spatial&#39;][:,0],adata[adata.obs[&#39;cluster&#39;]==cluster_id].obsm[&#39;spatial&#39;][:,1], c=adata[adata.obs[&#39;cluster&#39;]==cluster_name].obs[&#39;cluster&#39;]==cluster_name, s=5, cmap=&#39;plasma&#39;, vmin=0, edgecolors=&#39;none&#39;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cluster_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">adata_pattern</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">adata_pattern</span><span class="o">.</span><span class="n">to_df</span><span class="p">()[</span><span class="nb">str</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">])],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pattern </span><span class="si">{</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">label</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s1"> SVIs</span><span class="se">\n</span><span class="s1">corr=</span><span class="si">{</span><span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">corr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">svis</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;pattern_correlation_</span><span class="si">{</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">svi_to_plot</span> <span class="o">=</span> <span class="n">svis</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">svi_to_plot</span><span class="p">)</span>
+    <span class="n">memberships</span> <span class="o">=</span> <span class="n">svis</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;pattern_correlation_</span><span class="si">{</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+        <span class="n">im</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">adata_lri</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatial&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">adata_lri</span><span class="o">.</span><span class="n">to_df</span><span class="p">()[</span><span class="n">svi_to_plot</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span><span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">svi_to_plot</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1"> corr=</span><span class="si">{</span><span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">memberships</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">base</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_cluster_pattern.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Ntf3_Ntrk3&#39; &#39;Bdnf_Ntrk3&#39;]
+[&#39;Col9a3_Mag&#39; &#39;Lama2_Itgb4&#39;]
+[&#39;C1qa_Cd93&#39; &#39;Cfh_Itgam&#39;]
+[&#39;Tac2_Tacr1&#39; &#39;Tac1_Tacr1&#39;]
+[&#39;Col1a2_Cd93&#39; &#39;Igf2_Igf1r&#39;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_27_1.png" src="../_images/notebooks_v1_mouse_brain_27_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">idata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;is_svi&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">group</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span>
+<span class="n">group</span><span class="p">[</span><span class="s1">&#39;membership&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">custom</span><span class="p">,</span> <span class="n">background</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">er</span><span class="o">.</span><span class="n">pathway_prep</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span><span class="n">is_human</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">merged_df_edge</span><span class="p">,</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">er</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">custom</span><span class="p">,</span> <span class="n">background</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Using mouse LR pair dataset.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df_edge</span><span class="p">[</span><span class="n">merged_df_edge</span><span class="o">.</span><span class="n">group</span><span class="o">==</span><span class="s1">&#39;11&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gene_set</th>
+      <th>Term</th>
+      <th>Overlap</th>
+      <th>P-value</th>
+      <th>Adjusted P-value</th>
+      <th>Odds Ratio</th>
+      <th>Genes</th>
+      <th>group</th>
+      <th>ordered_group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>gs_ind_0</td>
+      <td>Axon guidance</td>
+      <td>2/17</td>
+      <td>0.518726</td>
+      <td>0.773945</td>
+      <td>1.461538</td>
+      <td>Slit1_Robo2;Slit1_Robo1</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>gs_ind_0</td>
+      <td>Cytokine-cytokine receptor interaction</td>
+      <td>1/18</td>
+      <td>0.872034</td>
+      <td>0.872034</td>
+      <td>0.708108</td>
+      <td>Inhba_Acvr2a</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>gs_ind_0</td>
+      <td>ECM-receptor interaction</td>
+      <td>2/9</td>
+      <td>0.207274</td>
+      <td>0.414547</td>
+      <td>3.016194</td>
+      <td>Vtn_Itga8;Npnt_Itga8</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>gs_ind_0</td>
+      <td>Focal adhesion</td>
+      <td>1/10</td>
+      <td>0.659203</td>
+      <td>0.773945</td>
+      <td>1.400000</td>
+      <td>Vtn_Itga8</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>gs_ind_0</td>
+      <td>Hedgehog signaling pathway</td>
+      <td>1/1</td>
+      <td>0.096386</td>
+      <td>0.321285</td>
+      <td>11.000000</td>
+      <td>Ihh_Cdon</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>gs_ind_0</td>
+      <td>Human papillomavirus infection</td>
+      <td>1/8</td>
+      <td>0.572270</td>
+      <td>0.773945</td>
+      <td>1.776471</td>
+      <td>Vtn_Itga8</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>gs_ind_0</td>
+      <td>Neurotrophin signaling pathway</td>
+      <td>1/1</td>
+      <td>0.096386</td>
+      <td>0.321285</td>
+      <td>11.000000</td>
+      <td>Ntf3_Ntrk3</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>gs_ind_0</td>
+      <td>PI3K-Akt signaling pathway</td>
+      <td>1/11</td>
+      <td>0.696551</td>
+      <td>0.773945</td>
+      <td>1.260870</td>
+      <td>Vtn_Itga8</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>gs_ind_0</td>
+      <td>Signaling pathways regulating pluripotency of ...</td>
+      <td>2/4</td>
+      <td>0.044607</td>
+      <td>0.321285</td>
+      <td>6.794872</td>
+      <td>Inhba_Acvr1c;Inhba_Acvr2a</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>gs_ind_0</td>
+      <td>TGF-beta signaling pathway</td>
+      <td>1/2</td>
+      <td>0.184543</td>
+      <td>0.414547</td>
+      <td>6.520000</td>
+      <td>Inhba_Acvr2a</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enrich_df_gene_reactome</span><span class="p">,</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">er</span><span class="o">.</span><span class="n">enrichment_interacrtion_gene_df</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">is_human</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">custom_pathwaydb</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Reactome_2022&#39;</span><span class="p">])</span>
+<span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">enrich_df_gene_reactome</span><span class="o">.</span><span class="n">Overlap</span><span class="p">])</span>
+<span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;pattern_rep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="o">.</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">rename_categories</span><span class="p">({</span>
+    <span class="s1">&#39;11&#39;</span><span class="p">:</span> <span class="s1">&#39;Dentate Pyramids (11)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;Oligodendrocytes (7)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;Astrocytes (0)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;Ependymal (5)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;Endothelial Tip (6)&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term_old&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span>
+<span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term_old&#39;</span><span class="p">]]</span>
+<span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;p130Cas Linkage To MAPK Signaling For Integrins&#39;</span><span class="p">,</span> <span class="s1">&#39;MAPK Signaling For Integrins (1)&#39;</span><span class="p">)</span>
+<span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;GRB2:SOS Provides Linkage To MAPK Signaling For Integrins&#39;</span><span class="p">,</span> <span class="s1">&#39;MAPK signaling For integrins (2)&#39;</span><span class="p">)</span>
+<span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Term&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Regulation Of Commissural Axon Pathfinding By SLIT And ROBO&#39;</span><span class="p">,</span> <span class="s1">&#39;Regulation Of Commissural Axon Pathfinding&#39;</span><span class="p">)</span>
+<span class="n">enrich_df_gene_reactome</span> <span class="o">=</span> <span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;Adjusted P-value&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">]</span>
+<span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="p">[(</span><span class="n">enrich_df_gene_reactome</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.12</span><span class="p">)],</span> <span class="n">x_key</span><span class="o">=</span><span class="s1">&#39;pattern_rep&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">top_term</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_reactome_small.png&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="p">[(</span><span class="n">enrich_df_gene_reactome</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.12</span><span class="p">)],</span> <span class="n">x_key</span><span class="o">=</span><span class="s1">&#39;pattern_rep&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">top_term</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_reactome_large.png&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enrichment</span><span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="p">[(</span><span class="n">enrich_df_gene_reactome</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">enrich_df_gene_reactome</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.12</span><span class="p">)],</span> <span class="n">x_key</span><span class="o">=</span><span class="s1">&#39;pattern_rep&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">top_term</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_v1_mouse_brain_31_0.png" src="../_images/notebooks_v1_mouse_brain_31_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Li Shiying.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

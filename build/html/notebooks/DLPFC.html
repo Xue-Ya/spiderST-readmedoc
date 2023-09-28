@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DLPFC &mdash; spider-st v0.0.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; spider-st v0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mouse brain" href="mouse_brain.html" />
+    <link rel="next" title="&lt;no title&gt;" href="mouse_brain.html" />
     <link rel="prev" title="Tutorials" href="../tutorials.html" /> 
 </head>
 
@@ -53,15 +53,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">DLPFC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mouse_brain.html">mouse brain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mouse_embryo.html">mouse embryo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mouse_lung.html">mouse lung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PDAC.html">PDAC</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -79,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../tutorials.html">Tutorials</a></li>
-      <li class="breadcrumb-item active">DLPFC</li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/notebooks/DLPFC.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,9 +82,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="DLPFC">
-<h1>DLPFC<a class="headerlink" href="#DLPFC" title="Permalink to this heading"></a></h1>
-<div class="nbinput docutils container">
+  <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -113,23 +104,24 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-06-17 14:24:53.076159: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2023-06-17 14:24:53.078030: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-06-17 14:24:53.115549: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-06-17 14:24:53.116714: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2023-09-22 14:10:05.884845: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-09-22 14:10:05.887989: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-09-22 14:10:05.946014: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-09-22 14:10:05.947312: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2023-06-17 14:24:53.740188: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-09-22 14:10:07.024256: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_name</span> <span class="o">=</span> <span class="s1">&#39;151672&#39;</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="s1">&#39;DFPLC&#39;</span>
-<span class="n">out_f</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../datasets/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">/&#39;</span>
+<span class="n">out_f</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../input_datasets/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">/&#39;</span>
 <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">out_f</span><span class="si">}</span><span class="s1">/adata.h5ad&#39;</span><span class="p">)</span>
-</pre></div>
+<span class="n">out_f</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../datasets/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">/&#39;</span>
+<br/></pre></div>
 </div>
 </div>
 <p>make sure you have spatialPCA and slingshot installed first</p>
@@ -166,7 +158,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 </div>
 <p>if you have already run the scripts, you can read the results with</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">out_f</span><span class="si">}</span><span class="s1">/idata.h5ad&#39;</span><span class="p">)</span>
@@ -179,7 +171,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 </div>
 <p>analysis</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">umap_3</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatialPC&#39;</span><span class="p">])</span>
@@ -194,7 +186,34 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(-2.95, 72.95, -0.5500000000000007, 132.55)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_DLPFC_8_1.png" src="../_images/notebooks_DLPFC_8_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">label_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;clusterlabel_refine&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;pastel&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">frameon</span> <span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -210,34 +229,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">label_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;clusterlabel_refine&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;pastel&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">frameon</span> <span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(-2.95, 72.95, -0.5500000000000007, 132.55)
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/notebooks_DLPFC_10_1.png" src="../_images/notebooks_DLPFC_10_1.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -262,11 +254,11 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_DLPFC_11_0.png" src="../_images/notebooks_DLPFC_11_0.png" />
+<img alt="../_images/notebooks_DLPFC_10_0.png" src="../_images/notebooks_DLPFC_10_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;smooth_pattern_score&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;spatialPC&#39;</span><span class="p">]</span>
@@ -292,11 +284,11 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_DLPFC_12_0.png" class="no-scaled-link" src="../_images/notebooks_DLPFC_12_0.png" style="width: 2019px; height: 1140px;" />
+<img alt="../_images/notebooks_DLPFC_11_0.png" class="no-scaled-link" src="../_images/notebooks_DLPFC_11_0.png" style="width: 2019px; height: 1140px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;label_spatialPCA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;label_spatialPCA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
@@ -310,16 +302,16 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other ope
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2    97
-3    62
+4    96
+2    72
 1    44
-4    38
-5    25
+3    37
+5    22
 Name: cluster, dtype: int64
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">():</span>
@@ -343,32 +335,7 @@ WARNING: You’re trying to run this on 305 dimensions of `.X`, if you really wa
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_DLPFC_14_1.png" class="no-scaled-link" src="../_images/notebooks_DLPFC_14_1.png" style="width: 2868px; height: 1251px;" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Figure size 1200x1200 with 0 Axes&gt;
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">():</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;rank_genes_groups&#39;</span><span class="p">][</span><span class="s1">&#39;names&#39;</span><span class="p">][:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_spatialpca_marker_exp.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/notebooks_DLPFC_15_0.png" class="no-scaled-link" src="../_images/notebooks_DLPFC_15_0.png" style="width: 4415px; height: 2185px;" />
+<img alt="../_images/notebooks_DLPFC_13_1.png" class="no-scaled-link" src="../_images/notebooks_DLPFC_13_1.png" style="width: 2868px; height: 1251px;" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -381,6 +348,31 @@ WARNING: You’re trying to run this on 305 dimensions of `.X`, if you really wa
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">():</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">spatial</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;rank_genes_groups&#39;</span><span class="p">][</span><span class="s1">&#39;names&#39;</span><span class="p">][:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">spot_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../figures/</span><span class="si">{</span><span class="n">ds</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sample_name</span><span class="si">}</span><span class="s1">_spatialpca_marker_exp.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_DLPFC_14_0.png" class="no-scaled-link" src="../_images/notebooks_DLPFC_14_0.png" style="width: 4452px; height: 2185px;" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 1200x1200 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">custom</span><span class="p">,</span> <span class="n">background</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">er</span><span class="o">.</span><span class="n">pathway_prep</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
@@ -403,14 +395,13 @@ WARNING: You’re trying to run this on 305 dimensions of `.X`, if you really wa
 Using human LR pair dataset.
 </pre></div></div>
 </div>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../tutorials.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="mouse_brain.html" class="btn btn-neutral float-right" title="mouse brain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mouse_brain.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
