@@ -2,3 +2,4 @@ sphinx-markdown-tables>=0.0.17
 myst-nb>=0.17.2
 nbsphinx>=0.9.1
 sphinx-gallery>=0.13.0
+recommonmark
