@@ -10,8 +10,9 @@ SPIDER: SPtial Interaction-encoDed intErface decipheR
   :width: 700
   :alt: Alternative text
 
-SPIDER constructs cell-cell interaction interfaces with minimized Dirichlet energy, models interface profiles with knowledge-graph-informed interaction signals, and identifies spatially variable signals with multiple probabilistic models.
-
+SPIDER constructs cell-cell interaction interfaces constrained by cellular interaction capacity,
+ and profiles and identifies spatially variable interaction signals with support from downstream transcript factors and multiple probabilistic models. 
+ 
 .. toctree::
    :maxdepth: 2
    :caption: General
