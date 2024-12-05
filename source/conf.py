@@ -1,3 +1,8 @@
+import os
+import sys
+sys.path.insert(0, os.path.abspath('/home/lishiying/data6/01-interaction-v2/SPIDER/'))
+print(sys.path)
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -7,14 +12,20 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'spider-st'
-copyright = '2023, Li Shiying'
+copyright = '2024, Li Shiying'
 author = 'Li Shiying'
-release = 'v0.0.1'
+release = 'v0.0.2'
+
+
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['recommonmark', 'sphinx_markdown_tables', "nbsphinx",
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',  # If you're using Google or NumPy style docstrings
+    'recommonmark', 'sphinx_markdown_tables', "nbsphinx",
     "sphinx_gallery.load_style"]
 
 templates_path = ['_templates']

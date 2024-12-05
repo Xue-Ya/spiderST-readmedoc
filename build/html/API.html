@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API &mdash; spider-st v0.0.1 documentation</title>
+  <title>API Documentation &mdash; spider-st v0.0.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
@@ -47,7 +47,30 @@
               <p class="caption" role="heading"><span class="caption-text">General</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#class-spider">Class SPIDER</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spider.SPIDER"><code class="docutils literal notranslate"><span class="pre">SPIDER</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spider.SPIDER.cell_transform"><code class="docutils literal notranslate"><span class="pre">SPIDER.cell_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spider.SPIDER.find_svi"><code class="docutils literal notranslate"><span class="pre">SPIDER.find_svi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spider.SPIDER.prep"><code class="docutils literal notranslate"><span class="pre">SPIDER.prep()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-preprocess-py">Module preprocess.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.idata_construct"><code class="docutils literal notranslate"><span class="pre">idata_construct()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.power_tri_init"><code class="docutils literal notranslate"><span class="pre">power_tri_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.find_interfaces"><code class="docutils literal notranslate"><span class="pre">find_interfaces()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.score_ot"><code class="docutils literal notranslate"><span class="pre">score_ot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-svi-py">Module svi.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spider.svi.tf_corr"><code class="docutils literal notranslate"><span class="pre">tf_corr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.svi.combine_SVI"><code class="docutils literal notranslate"><span class="pre">combine_SVI()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -68,7 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">API</li>
+      <li class="breadcrumb-item active">API Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/API.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,15 +101,405 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spider</span>
+  <section id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading"></a></h1>
+<p>This section provides an overview of the API, including the main class and its associated functions.</p>
+<section id="class-spider">
+<h2>Class SPIDER<a class="headerlink" href="#class-spider" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Description</strong>: Main functions of SPIDER.</p></li>
+<li><p><strong>Methods</strong>: See the members listed above.</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SPIDER">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.</span></span><span class="sig-name descname"><span class="pre">SPIDER</span></span><a class="reference internal" href="_modules/spider/SPIDER.html#SPIDER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SPIDER" title="Permalink to this definition"></a></dt>
+<dd><p>The <cite>SPIDER</cite> class encapsulates methods for processing spatial transcriptomics data.</p>
+<p>The class provides functionality for constructing an interface data object from spatial transcriptomics (ST) data.
+It supports various preprocessing steps, such as filtering, normalization, and imputation, to prepare the data for
+downstream analysis of cell-cell interactions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spider.SPIDER.cell_transform">
+<span class="sig-name descname"><span class="pre">cell_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SPIDER.html#SPIDER.cell_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SPIDER.cell_transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transform cell data by integrating interaction scores and patterns.</p>
+<p>This method updates the provided AnnData object (<cite>adata</cite>) with interaction patterns
+and scores obtained from the input data (<cite>idata</cite>). It can also perform gene ranking
+based on specified labels if provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idata</strong> (<em>AnnData</em>) – Input AnnData object containing interaction scores and patterns.</p></li>
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Input AnnData object to be updated with interaction data.</p></li>
+<li><p><strong>label</strong> (<em>str</em><em>, </em><em>optional</em>) – The key for the label in <cite>idata.uns[‘cell_meta’]</cite> used for grouping cells
+and performing rank gene analysis (default is None).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Updated AnnData object with added interaction patterns and scores.</p></li>
+<li><p><strong>adata_lri</strong> (<em>AnnData</em>) – AnnData object containing interaction scores filtered by the specified label.</p></li>
+<li><p><strong>adata_pattern</strong> (<em>AnnData</em>) – AnnData object containing interaction patterns filtered by the specified label.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function checks if the specified label exists in the <cite>cell_meta</cite> metadata. If it does, it computes ranking for genes based on interaction scores and patterns.</p></li>
+<li><p>Small clusters (with only one cell) are excluded from the analysis to ensure meaningful group comparisons.</p></li>
+<li><p>The spatial coordinates are preserved in the <cite>obsm</cite> attribute for both <cite>adata_lri</cite> and <cite>adata_pattern</cite>.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_lri</span><span class="p">,</span> <span class="n">adata_pattern</span> <span class="o">=</span> <span class="n">cell_transform</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cell_type&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This page is still under construction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spider.SPIDER.find_svi">
+<span class="sig-name descname"><span class="pre">find_svi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abstract</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern_prune_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predefined_pattern_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svi_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SPIDER.html#SPIDER.find_svi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SPIDER.find_svi" title="Permalink to this definition"></a></dt>
+<dd><p>Find SVI and SVI patterns from interface idata.</p>
+<p>This method processes the provided interface data to compute SVI and related patterns.
+It can optionally perform abstraction based on the number of interfaces present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idata</strong> (<em>AnnData</em>) – Input AnnData object containing interface data.</p></li>
+<li><p><strong>out_f</strong> (<em>str</em>) – Output directory path where results will be saved.</p></li>
+<li><p><strong>R_path</strong> (<em>str</em>) – Path to the R script or binary for external processing.</p></li>
+<li><p><strong>abstract</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, performs abstraction on the data if the number of interfaces is sufficient (default is True).</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, overwrites existing output files (default is False).</p></li>
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of neighbors to use for the abstraction process (default is 5).</p></li>
+<li><p><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – Alpha parameter for the abstraction algorithm (default is 0.3).</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold for filtering SVI candidates (default is 0.01).</p></li>
+<li><p><strong>pattern_prune_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold for pruning patterns during SVI pattern generation (default is 1e-20).</p></li>
+<li><p><strong>predefined_pattern_number</strong> (<em>int</em><em>, </em><em>optional</em>) – If set to a positive integer, limits the number of predefined patterns (default is -1, which means no limit).</p></li>
+<li><p><strong>svi_number</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of SVI patterns to return (default is 10).</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel jobs to run during processing (default is 10).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>idata</strong> (<em>AnnData</em>) – The updated AnnData object containing results of SVI and SVI patterns.</p></li>
+<li><p><strong>meta_idata</strong> (<em>AnnData or None</em>) – The meta AnnData object containing abstraction results, or None if abstraction was not performed.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method checks if the output directory exists and creates it if it doesn’t.</p></li>
+<li><p>If the number of interfaces in <cite>idata</cite> is less than 1000, abstraction is skipped.</p></li>
+<li><p>Various intermediate results are saved as CSV files in the specified output directory.</p></li>
+<li><p>The method utilizes external R processing for some computations, requiring R to be installed and accessible. Otherwise, only the three python methods are used.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result_idata</span><span class="p">,</span> <span class="n">result_meta_idata</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">find_svi</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s1">&#39;output_directory&#39;</span><span class="p">,</span> <span class="s1">&#39;/path/to/R&#39;</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spider.SPIDER.prep">
+<span class="sig-name descname"><span class="pre">prep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'type'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_human</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imputation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itermax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_raw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathway_raw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_total</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SPIDER.html#SPIDER.prep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SPIDER.prep" title="Permalink to this definition"></a></dt>
+<dd><p>Prepares the data for interface analysis by processing input AnnData.</p>
+<p>This method subsets the input AnnData object to include only ligand-receptor
+genes and transcription factor genes, constructs interfaces from the data,
+and computes interface profiles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata_input</strong> (<em>AnnData</em>) – Input AnnData object containing spatial transcriptomics data.</p></li>
+<li><p><strong>cluster_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Key in <cite>adata</cite> that denotes the cluster or cell type for analysis (default is ‘type’).</p></li>
+<li><p><strong>is_human</strong> (<em>bool</em><em>, </em><em>optional</em>) – Indicates whether the input data is from human samples (default is True).</p></li>
+<li><p><strong>cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold for filtering long-distance interactions (default is None, meaning no filtering).</p></li>
+<li><p><strong>imputation</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, performs imputation on the input data (default is False).</p></li>
+<li><p><strong>itermax</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations for optimization algorithms (default is 1000).</p></li>
+<li><p><strong>lr_raw</strong> (<em>DataFrame</em><em>, </em><em>optional</em>) – Predefined ligand-receptor pairs. If None, defaults to loading based on <cite>is_human</cite>.</p></li>
+<li><p><strong>pathway_raw</strong> (<em>DataFrame</em><em>, </em><em>optional</em>) – Predefined pathways. If None, defaults to loading based on <cite>is_human</cite>.</p></li>
+<li><p><strong>is_sc</strong> (<em>bool</em><em>, </em><em>optional</em>) – Indicates whether the input data is single-cell data (default is False).</p></li>
+<li><p><strong>normalize_total</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, normalizes total counts in the <cite>adata</cite> object (default is False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>idata</strong> – An AnnData object constructed from the processed interface profiles and metadata.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnData</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method first creates a copy of the input AnnData object and releases the original.</p></li>
+<li><p>It checks if ligand-receptor pairs and pathway data are provided; if not, it loads them based on the <cite>is_human</cite> flag.</p></li>
+<li><p>Interfaces are constructed from the data, followed by scoring based on the provided parameters.</p></li>
+<li><p>The resulting <cite>idata</cite> object contains computed scores and metadata for further analysis.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prep</span><span class="p">(</span><span class="n">adata_input</span><span class="p">,</span> <span class="n">cluster_key</span><span class="o">=</span><span class="s1">&#39;cell_type&#39;</span><span class="p">,</span> <span class="n">is_human</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-preprocess-py">
+<h2>Module preprocess.py<a class="headerlink" href="#module-preprocess-py" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Description</strong>: Functions for data preparation and processing.</p></li>
+<li><p><strong>Functions</strong>: See <cite>idata_construct</cite> and other available functions in the module.</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.idata_construct">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">idata_construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathway_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_total</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#idata_construct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.idata_construct" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs an AnnData object for interface profiles from input data.</p>
+<p>This function takes scores and metadata to create an AnnData object,
+setting various attributes and performing quality checks on the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score</strong> (<em>np.ndarray</em>) – A 2D array of scores representing the interaction strengths between ligand-receptor pairs.</p></li>
+<li><p><strong>direction</strong> (<em>np.ndarray</em>) – A 2D array indicating the direction of interactions for the respective scores.</p></li>
+<li><p><strong>pairs_meta</strong> (<em>pd.DataFrame</em>) – A DataFrame containing metadata for ligand-receptor pairs, which should include relevant identifiers.</p></li>
+<li><p><strong>lr_df</strong> (<em>pd.DataFrame</em>) – A DataFrame containing ligand-receptor information, with indices corresponding to ligand-receptor pairs.</p></li>
+<li><p><strong>lr_raw</strong> (<em>pd.DataFrame</em>) – Raw metadata for ligand-receptor pairs, used for further analysis and storage in the output AnnData object.</p></li>
+<li><p><strong>pathway_df</strong> (<em>pd.DataFrame</em>) – A DataFrame containing pathway information that describes interactions between transcription factors and genes.</p></li>
+<li><p><strong>adata</strong> (<em>AnnData</em>) – The original AnnData object containing the input data for the analysis.</p></li>
+<li><p><strong>drop</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, drops cells that do not have any expressed genes (default is True).</p></li>
+<li><p><strong>normalize_total</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, normalizes the total counts of interactions in the AnnData object (default is False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>idata</strong> – The constructed AnnData object containing the following:
+- Scores and directions as layers.
+- Metadata and quality metrics for interfaces.
+- Spatial coordinates if available.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnData</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function performs quality checks on the data, filtering genes and cells based on specified criteria.</p></li>
+<li><p>It normalizes total interaction strengths per interface if the <cite>normalize_total</cite> flag is set to True.</p></li>
+<li><p>The function constructs the output AnnData object (<cite>idata</cite>) with appropriate metadata for downstream analysis.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idata</span> <span class="o">=</span> <span class="n">idata_construct</span><span class="p">(</span><span class="n">score_array</span><span class="p">,</span> <span class="n">direction_array</span><span class="p">,</span> <span class="n">pairs_meta_df</span><span class="p">,</span> <span class="n">lr_df</span><span class="p">,</span> <span class="n">lr_raw_df</span><span class="p">,</span> <span class="n">pathway_df</span><span class="p">,</span> <span class="n">adata</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.power_tri_init">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">power_tri_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#power_tri_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.power_tri_init" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize power triangulation based on interaction capacity and spatial data.</p>
+<p>This function computes the power triangulation for a set of cells based on their
+spatial coordinates and ligand-receptor (LR) capacities. It normalizes the capacities,
+computes lifted weighted points, and determines the convex hull and Delaunay triangulation
+to identify interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Input AnnData object containing spatial coordinates and expression data.</p></li>
+<li><p><strong>lr_df</strong> (<em>DataFrame</em>) – DataFrame containing ligand-receptor pairs to be analyzed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pairs</strong> – Array of unique pairs of cell indices representing power triangulation edges.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function normalizes the ligand-receptor capacity per cell and computes a minimum
+distance based on spatial coordinates.</p></li>
+<li><p>The lifted weighted points are calculated from the spatial data and capacities.</p></li>
+<li><p>The convex hull is computed to extract the Delaunay triangulation, which is then used
+to generate unique cell pairs representing interfaces.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="n">power_tri_init</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">lr_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.find_interfaces">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">find_interfaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#find_interfaces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.find_interfaces" title="Permalink to this definition"></a></dt>
+<dd><p>Identify interfaces between cells based on interaction capacity and spatial distance.</p>
+<p>This function locates interfaces between cells by analyzing interaction capacity and
+their spatial distances. It applies filtering based on a specified cutoff distance and
+can optionally include self-interaction pairs for bulk ST data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Input AnnData object containing spatial and expression data.</p></li>
+<li><p><strong>cluster_key</strong> (<em>str</em>) – Key in <cite>adata.obs</cite> that specifies the clustering information for the cells.</p></li>
+<li><p><strong>lr_df</strong> (<em>DataFrame</em>) – DataFrame containing ligand-receptor pairs to be analyzed.</p></li>
+<li><p><strong>cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Distance cutoff for filtering interfaces (default is None). If not specified,
+the cutoff is determined based on the distribution of distances.</p></li>
+<li><p><strong>is_sc</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, self-interaction pairs are not included (default is False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>pairs</strong> (<em>ndarray</em>) – Array of identified cell pairs representing interfaces.</p></li>
+<li><p><strong>pairs_meta</strong> (<em>DataFrame</em>) – DataFrame containing metadata for the identified interfaces, including distances.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function calculates a median distance and uses it to filter out low-capacity cells
+and their interfaces.</p></li>
+<li><p>Gaussian Mixture Models (GMM) are used to estimate the ideal number of interfaces
+based on the capacity of the cells.</p></li>
+<li><p>If <cite>is_sc</cite> is False, self-interaction pairs are added to the results.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span><span class="p">,</span> <span class="n">pairs_meta</span> <span class="o">=</span> <span class="n">find_interfaces</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="s1">&#39;cluster_key&#39;</span><span class="p">,</span> <span class="n">lr_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.score_ot">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">score_ot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface_meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface_cell_pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itermax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#score_ot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.score_ot" title="Permalink to this definition"></a></dt>
+<dd><p>Score interactions and directions between ligands and receptors based on spatial data.</p>
+<p>This function evaluates the interactions between ligands and receptors in the provided
+AnnData object, using a COT scoring mechanism that incorporates spatial information and
+co-expression data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Input AnnData object containing expression data and spatial coordinates.</p></li>
+<li><p><strong>lr_df</strong> (<em>DataFrame</em>) – DataFrame containing ligand-receptor pairs to be analyzed.</p></li>
+<li><p><strong>interface_meta</strong> (<em>DataFrame</em>) – Metadata associated with the interface analysis (not directly used in scoring).</p></li>
+<li><p><strong>interface_cell_pair</strong> (<em>DataFrame</em>) – A DataFrame containing pairs of cell indices for which interactions are to be scored.</p></li>
+<li><p><strong>weight</strong> (<em>tuple</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – Weights for the scoring components (default is (0.25, 0.25, 0.25, 0.25)).</p></li>
+<li><p><strong>itermax</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations for the scoring algorithm (default is 1000).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>idata_score</strong> (<em>ndarray</em>) – A 2D numpy array containing the interaction scores for each ligand-receptor pair.</p></li>
+<li><p><strong>idata_direction</strong> (<em>ndarray</em>) – A 2D numpy array indicating the direction (e.g., ligand or receptor dominance)
+of each interaction.</p></li>
+<li><p><strong>comm_network</strong> (<em>dict</em>) – A dictionary representing the combined communication network, mapping
+ligand-receptor pairs to their scores.</p></li>
+<li><p><strong>S</strong> (<em>ndarray</em>) – A 2D numpy array of gene expression values for ligands.</p></li>
+<li><p><strong>D</strong> (<em>ndarray</em>) – A 2D numpy array of gene expression values for receptors.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The scoring mechanism relies on the spatial proximity of cells, calculating distances
+between pairs of cells to inform the scoring.</p></li>
+<li><p>Ligand-receptor interactions are evaluated based on COT and their co-expression in the spatial
+context of the cells.</p></li>
+<li><p>The output includes normalized scores for interactions and a directionality indicator.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interaction_scores</span><span class="p">,</span> <span class="n">interaction_directions</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">score_ot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">lr_df</span><span class="p">,</span> <span class="n">interface_meta</span><span class="p">,</span> <span class="n">interface_cell_pair</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-svi-py">
+<h2>Module svi.py<a class="headerlink" href="#module-svi-py" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Description</strong>: Functions for TF correlation and spatial variance candidate calling.</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.svi.tf_corr">
+<span class="sig-prename descclassname"><span class="pre">spider.svi.</span></span><span class="sig-name descname"><span class="pre">tf_corr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_human</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_top_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/svi.html#tf_corr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.svi.tf_corr" title="Permalink to this definition"></a></dt>
+<dd><p>Compute transcription factor correlations with ligand-receptor interactions.</p>
+<p>This function analyzes the given interface data and evaluates the correlations
+between each interaction profile and their target genes, saving the results to
+specified output files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idata</strong> (<em>AnnData</em>) – Input AnnData object containing interface data.</p></li>
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Input AnnData object containing count data.</p></li>
+<li><p><strong>is_human</strong> (<em>bool</em>) – Indicator for whether the data pertains to human genes.</p></li>
+<li><p><strong>out_f</strong> (<em>str</em>) – Output directory path where results will be saved.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum correlation coefficient threshold for calling TF support (default is 0.3).</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel jobs to run during processing (default is 20).</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, existing output files will be overwritten (default is False).</p></li>
+<li><p><strong>step</strong> (<em>float</em><em>, </em><em>optional</em>) – The step size for adjusting the threshold during the iterative process (default is None).</p></li>
+<li><p><strong>pathways</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of pathways to analyze; if empty, pathways will be loaded based on the input data.</p></li>
+<li><p><strong>keep_top_score</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top scoring interactions to retain (default is None).</p></li>
+<li><p><strong>smooth</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, applies smoothing to the expression data (default is False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function saves results directly to the specified output files and updates
+the <cite>idata</cite> object with correlation and score data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function checks if the output directory exists and creates it if it does not.</p></li>
+<li><p>If smoothing is enabled, it applies a kernel smoothing method based on spatial data.</p></li>
+<li><p>Results are saved in sparse matrix format and CSV files for easy access and further analysis.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tf_corr</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;is_human&#39;</span><span class="p">],</span> <span class="s1">&#39;output_directory/&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep_top_score</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.svi.combine_SVI">
+<span class="sig-prename descclassname"><span class="pre">spider.svi.</span></span><span class="sig-name descname"><span class="pre">combine_SVI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svi_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/svi.html#combine_SVI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.svi.combine_SVI" title="Permalink to this definition"></a></dt>
+<dd><p>Combine SVIs based on both SV candidates and TF support.</p>
+<p>This function attempts to identify SVIs from the
+given input data. It first uses strict filtering, then falls back to relaxed filtering
+or SOMDE results if the detected number of SVIs is below a specified threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idata</strong> (<em>AnnData</em>) – Input AnnData object containing interaction data.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Threshold value for filtering SVI candidates based on significance.</p></li>
+<li><p><strong>svi_number</strong> (<em>int</em><em>, </em><em>optional</em>) – The mimimum number of SVIs to identify (default is 10). The function will
+attempt to ensure that at least this many SVIs are returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>svi_df</strong> (<em>DataFrame</em>) – DataFrame containing results of all LRIs.</p></li>
+<li><p><strong>svi_df_strict</strong> (<em>DataFrame</em>) – DataFrame containing strictly filtered SVIs based on the provided threshold and TF support.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function checks the number of detected SVIs and applies different filtering
+strategies if the count is less than <cite>svi_number</cite>.</p></li>
+<li><p>If TF support counts are available, genes without TF support are excluded from
+the strict SVI results.</p></li>
+<li><p>Updates the <cite>is_svi</cite> column in <cite>idata.var</cite> to indicate which genes are identified as SVIs.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">svi_df</span><span class="p">,</span> <span class="n">svi_df_strict</span> <span class="o">=</span> <span class="n">combine_SVI</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">svi_number</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -100,7 +513,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Li Shiying.</p>
+    <p>&#169; Copyright 2024, Li Shiying.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
