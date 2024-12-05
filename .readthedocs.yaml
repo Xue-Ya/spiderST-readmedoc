@@ -4,6 +4,9 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
+  commands: 
+      - mkdir --parents _readthedocs/html/
+      - cp --recursive build/html/* _readthedocs/html/
 
 python:
   install:
