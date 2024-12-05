@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Documentation &mdash; spider-st v0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Installation" href="Installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #6a65d8" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#class-spider">Class SPIDER</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spider.SPIDER"><code class="docutils literal notranslate"><span class="pre">SPIDER</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-preprocess-py">Module preprocess.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.idata_construct"><code class="docutils literal notranslate"><span class="pre">idata_construct()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.power_tri_init"><code class="docutils literal notranslate"><span class="pre">power_tri_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.find_interfaces"><code class="docutils literal notranslate"><span class="pre">find_interfaces()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.preprocess.score_ot"><code class="docutils literal notranslate"><span class="pre">score_ot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-svi-py">Module svi.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spider.svi.tf_corr"><code class="docutils literal notranslate"><span class="pre">tf_corr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spider.svi.combine_SVI"><code class="docutils literal notranslate"><span class="pre">combine_SVI()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #6a65d8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spider-st</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/API.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading"></a></h1>
+<p>This section provides an overview of the API, including the main class and its associated functions.</p>
+<section id="class-spider">
+<h2>Class SPIDER<a class="headerlink" href="#class-spider" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Description</strong>: Main functions of SPIDER.</p></li>
+<li><p><strong>Methods</strong>: See the members listed above.</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SPIDER">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.</span></span><span class="sig-name descname"><span class="pre">SPIDER</span></span><a class="reference internal" href="_modules/spider/SPIDER.html#SPIDER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SPIDER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-preprocess-py">
+<h2>Module preprocess.py<a class="headerlink" href="#module-preprocess-py" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Description</strong>: Functions for data preparation and processing.</p></li>
+<li><p><strong>Functions</strong>: See <cite>idata_construct</cite> and other available functions in the module.</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.idata_construct">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">idata_construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathway_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_total</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#idata_construct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.idata_construct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.power_tri_init">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">power_tri_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#power_tri_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.power_tri_init" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.find_interfaces">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">find_interfaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#find_interfaces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.find_interfaces" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.preprocess.score_ot">
+<span class="sig-prename descclassname"><span class="pre">spider.preprocess.</span></span><span class="sig-name descname"><span class="pre">score_ot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface_meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface_cell_pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itermax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/preprocess.html#score_ot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.preprocess.score_ot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-svi-py">
+<h2>Module svi.py<a class="headerlink" href="#module-svi-py" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Description</strong>: Functions for TF correlation and spatial variance candidate calling.</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.svi.tf_corr">
+<span class="sig-prename descclassname"><span class="pre">spider.svi.</span></span><span class="sig-name descname"><span class="pre">tf_corr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_human</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_top_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/svi.html#tf_corr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.svi.tf_corr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.svi.combine_SVI">
+<span class="sig-prename descclassname"><span class="pre">spider.svi.</span></span><span class="sig-name descname"><span class="pre">combine_SVI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svi_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/svi.html#combine_SVI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.svi.combine_SVI" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Li Shiying.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

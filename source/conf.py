@@ -1,6 +1,8 @@
 import os
 import sys
-sys.path.insert(0, os.path.abspath('/home/lishiying/data6/01-interaction-v2/SPIDER/'))
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+sys.path.insert(0, os.path.abspath("."))
+sys.path.insert(0, os.path.abspath("../"))
 print(sys.path)
 
 # Configuration file for the Sphinx documentation builder.

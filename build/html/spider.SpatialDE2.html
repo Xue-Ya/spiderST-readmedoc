@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spider.SpatialDE2 package &mdash; spider-st v0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #6a65d8" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #6a65d8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spider-st</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">spider.SpatialDE2 package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spider.SpatialDE2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spider-spatialde2-package">
+<h1>spider.SpatialDE2 package<a class="headerlink" href="#spider-spatialde2-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-spider.SpatialDE2.aeh">
+<span id="spider-spatialde2-aeh-module"></span><h2>spider.SpatialDE2.aeh module<a class="headerlink" href="#module-spider.SpatialDE2.aeh" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.aeh.</span></span><span class="sig-name descname"><span class="pre">SpatialPatternParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nclasses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Integral</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lengthscales</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Real</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Real</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern_prune_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'l-bfgs-b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Real</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Integral</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Real</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Real</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Real</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Real</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/aeh.html#SpatialPatternParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parameters for automated expession histology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nclasses</strong> – Maximum number of regions to consider. Defaults to the square root of the number of observations.</p></li>
+<li><p><strong>lengthscales</strong> – List of kernel lenthscales. Defaults to a single lengthscale of the minimum distance between
+observations.</p></li>
+<li><p><strong>pattern_prune_threshold</strong> – Probability threshold at which unused patterns are removed. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p></li>
+<li><p><strong>method</strong> – Optimization algorithm, must be known to <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">l-bfgs-b</span></code>.</p></li>
+<li><p><strong>tol</strong> – Convergence tolerance. Defaults to 1e-9.</p></li>
+<li><p><strong>maxiter</strong> – Maximum number of iterations. Defaults to <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p></li>
+<li><p><strong>gamma_1</strong> – Parameter of the noise variance prior, defaults to <code class="docutils literal notranslate"><span class="pre">1e-14</span></code>.</p></li>
+<li><p><strong>gamma_2</strong> – Parameter of the noise variance prior, defaults to <code class="docutils literal notranslate"><span class="pre">1e-14</span></code>.</p></li>
+<li><p><strong>eta_1</strong> – Parameter of the Dirichlet process hyperprior, defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>eta_2</strong> – Parameter of the Dirichlet process hyperprior, defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.eta_1">
+<span class="sig-name descname"><span class="pre">eta_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Real</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.eta_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.eta_2">
+<span class="sig-name descname"><span class="pre">eta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Real</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.eta_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.gamma_1">
+<span class="sig-name descname"><span class="pre">gamma_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Real</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-14</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.gamma_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.gamma_2">
+<span class="sig-name descname"><span class="pre">gamma_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Real</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-14</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.gamma_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.lengthscales">
+<span class="sig-name descname"><span class="pre">lengthscales</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Real</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Real</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.lengthscales" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.maxiter">
+<span class="sig-name descname"><span class="pre">maxiter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Integral</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.maxiter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.method">
+<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'l-bfgs-b'</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.method" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.nclasses">
+<span class="sig-name descname"><span class="pre">nclasses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Integral</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.nclasses" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.pattern_prune_threshold">
+<span class="sig-name descname"><span class="pre">pattern_prune_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-06</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.pattern_prune_threshold" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatternParameters.tol">
+<span class="sig-name descname"><span class="pre">tol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Real</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-09</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatternParameters.tol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.aeh.</span></span><span class="sig-name descname"><span class="pre">SpatialPatterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern_probabilities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patterns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbo_trace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/aeh.html#SpatialPatterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Results of automated expression histology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>converged</strong> – Whether the optimization converged.</p></li>
+<li><p><strong>status</strong> – Status of the optimization.</p></li>
+<li><p><strong>labels</strong> – The estimated region labels.</p></li>
+<li><p><strong>pattern_probabilities</strong> – N_obs x N_patterns array with the estimated region probabilities for each observation.</p></li>
+<li><p><strong>niter</strong> – Number of iterations for the optimization.</p></li>
+<li><p><strong>elbo_trace</strong> – ELBO values at each iteration.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.converged">
+<span class="sig-name descname"><span class="pre">converged</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.converged" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.elbo_trace">
+<span class="sig-name descname"><span class="pre">elbo_trace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.elbo_trace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.labels" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.niter">
+<span class="sig-name descname"><span class="pre">niter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.niter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.pattern_probabilities">
+<span class="sig-name descname"><span class="pre">pattern_probabilities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.pattern_probabilities" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.patterns">
+<span class="sig-name descname"><span class="pre">patterns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.patterns" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.SpatialPatterns.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#spider.SpatialDE2.aeh.SpatialPatterns.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.aeh.spatial_patterns">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.aeh.</span></span><span class="sig-name descname"><span class="pre">spatial_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata:</span> <span class="pre">~anndata._core.anndata.AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key='spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params:</span> <span class="pre">~spider.SpatialDE2.aeh.SpatialPatternParameters</span> <span class="pre">=</span> <span class="pre">SpatialPatternParameters(nclasses=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lengthscales=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern_prune_threshold=1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method='l-bfgs-b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_1=1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_2=1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_1=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_2=1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng:</span> <span class="pre">~numpy.random._generator.Generator</span> <span class="pre">=</span> <span class="pre">Generator(PCG64)</span> <span class="pre">at</span> <span class="pre">0x7FF8688A9E40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#spider.SpatialDE2.aeh.SpatialPatterns" title="spider.SpatialDE2.aeh.SpatialPatterns"><span class="pre">SpatialPatterns</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">AnnData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/aeh.html#spatial_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.aeh.spatial_patterns" title="Permalink to this definition"></a></dt>
+<dd><p>Detect spatial patterns of gene expression and assign genes to patterns.</p>
+<p>Uses a Gaussian process mixture. A Dirichlet process prior allows
+to automatically determine the number of distinct regions in the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>genes</strong> – List of genes to base the analysis on. Defaults to all genes.</p></li>
+<li><p><strong>normalized</strong> – Whether the data are already normalized to an approximately Gaussian likelihood.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, they will be normalized using the workflow from Svensson et al, 2018.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>params</strong> – Parameters for the algorithm, e.g. prior distributions, spatial smoothness, etc.</p></li>
+<li><p><strong>rng</strong> – Random number generator.</p></li>
+<li><p><strong>copy</strong> – Whether to return a copy of <code class="docutils literal notranslate"><span class="pre">adata</span></code> with results or write the results into <code class="docutils literal notranslate"><span class="pre">adata</span></code>
+in-place.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple. The first element is a <a class="reference internal" href="#spider.SpatialDE2.aeh.SpatialPatterns" title="spider.SpatialDE2.aeh.SpatialPatterns"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpatialPatterns</span></code></a>, the second is <code class="docutils literal notranslate"><span class="pre">None</span></code> if <code class="docutils literal notranslate"><span class="pre">copy</span> <span class="pre">==</span> <span class="pre">False</span></code>
+or an <code class="docutils literal notranslate"><span class="pre">AnnData</span></code> object. Patterns will be in <code class="docutils literal notranslate"><span class="pre">adata.obs[&quot;spatial_pattern_0&quot;]</span></code>, …,
+<code class="docutils literal notranslate"><span class="pre">adata.obs[&quot;spatial_pattern_n&quot;]</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-spider.SpatialDE2.de_test">
+<span id="spider-spatialde2-de-test-module"></span><h2>spider.SpatialDE2.de_test module<a class="headerlink" href="#module-spider.SpatialDE2.de_test" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.de_test.test">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.de_test.</span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omnibus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizefactors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stack_kernels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/de_test.html#test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.de_test.test" title="Permalink to this definition"></a></dt>
+<dd><p>Test for spatially variable genes.</p>
+<p>Perform a score test to detect spatially variable genes in a spatial transcriptomics
+dataset. Multiple kernels can be tested to detect genes with different spatial patterns and lengthscales.
+The test uses a count-based likelihood and thus operates on raw count data. Two ways of handling multiple
+kernels are implemented: omnibus and Cauchy combination. The Cauchy combination tests each kernel separately
+and combines the p-values afterwards, while the omnibus test tests all kernels simultaneously. With multiple
+kernels the omnibus test is faster, but may have slightly less statistical power than the Cauchy combination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>omnibus</strong> – Whether to do an omnibus test.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>kernel_space</strong> – <p>Kernels to test against. Dictionary with the name of the kernel function as key and list of
+lengthscales (if applicable) as values. Currently, three kernel functions are known:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SE</span></code>, the squared exponential kernel <span class="math notranslate nohighlight">\(k(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}; l) = \exp\left(-\frac{\lVert \boldsymbol{x}^{(1)} - \boldsymbol{x}^{(2)} \rVert}{l^2}\right)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PER</span></code>, the periodic kernel <span class="math notranslate nohighlight">\(k(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}; l) = \cos\left(2 \pi \frac{\sum_i (x^{(1)}_i - x^{(2)}_i)}{l}\right)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linear</span></code>, the linear kernel <span class="math notranslate nohighlight">\(k(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}) = (\boldsymbol{x}^{(1)})^\top \boldsymbol{x}^{(2)}\)</span></p></li>
+</ul>
+<p>By default, 5 squared exponential and 5 periodic kernels with lengthscales spanning the range of the
+data will be used.</p>
+</p></li>
+<li><p><strong>sizefactors</strong> – Scaling factors for the observations. Default to total read counts.</p></li>
+<li><p><strong>stack_kernels</strong> – When using the Cauchy combination, all tests can be performed in one operation by stacking
+the kernel matrices. This leads to increased memory consumption, but will drastically improve runtime
+on GPUs for smaller data sets. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code> for datasets with less than 2000 observations and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p></li>
+<li><p><strong>use_cache</strong> – Whether to use a pre-computed distance matrix for all kernels instead of computing the distance
+matrix anew for each kernel. Increases memory consumption, but is somewhat faster.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <code class="docutils literal notranslate"><span class="pre">omnibus==True</span></code>, a tuple with a Pandas DataFrame as the first element and <code class="docutils literal notranslate"><span class="pre">None</span></code> as the second.
+The DataFrame contains the results of the test for each gene, in particular p-values and BH-adjusted p-values.
+Otherwise, a tuple of two DataFrames. The first contains the combined results, while the second contains results
+from individual tests.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-spider.SpatialDE2.dp_hmrf">
+<span id="spider-spatialde2-dp-hmrf-module"></span><h2>spider.SpatialDE2.dp_hmrf module<a class="headerlink" href="#module-spider.SpatialDE2.dp_hmrf" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.dp_hmrf.</span></span><span class="sig-name descname"><span class="pre">TissueSegmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus" title="spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus"><span class="pre">TissueSegmentationStatus</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_probabilities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gammahat_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gammahat_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbo_trace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nclasses_trace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/dp_hmrf.html#TissueSegmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Results of tissue segmentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>converged</strong> – Whether the optimization converged.</p></li>
+<li><p><strong>status</strong> – Status of the optimization.</p></li>
+<li><p><strong>labels</strong> – The estimated region labels.</p></li>
+<li><p><strong>class_probabilities</strong> – N_obs x N_regions array with the estimated region probabilities for each observation.</p></li>
+<li><p><strong>gammahat_1</strong> – N_classes x N_genes array with the estimated parameter of the gene expression posterior.</p></li>
+<li><p><strong>gammahat_2</strong> – N_classes x 1 array with the estimated parameter of the gene expression posterior.</p></li>
+<li><p><strong>niter</strong> – Number of iterations for the optimization.</p></li>
+<li><p><strong>prune_iterations</strong> – Iterations at which unneeded regions were removed.</p></li>
+<li><p><strong>elbo_trace</strong> – ELBO values at each iteration.</p></li>
+<li><p><strong>nclasses_trace</strong> – Number of regions at each iteration.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.class_probabilities">
+<span class="sig-name descname"><span class="pre">class_probabilities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.class_probabilities" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.converged">
+<span class="sig-name descname"><span class="pre">converged</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.converged" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.elbo_trace">
+<span class="sig-name descname"><span class="pre">elbo_trace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.elbo_trace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.gammahat_1">
+<span class="sig-name descname"><span class="pre">gammahat_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.gammahat_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.gammahat_2">
+<span class="sig-name descname"><span class="pre">gammahat_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.gammahat_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.labels" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.nclasses_trace">
+<span class="sig-name descname"><span class="pre">nclasses_trace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.nclasses_trace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.niter">
+<span class="sig-name descname"><span class="pre">niter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.niter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.prune_iterations">
+<span class="sig-name descname"><span class="pre">prune_iterations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.prune_iterations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentation.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus" title="spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus"><span class="pre">TissueSegmentationStatus</span></a></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.dp_hmrf.</span></span><span class="sig-name descname"><span class="pre">TissueSegmentationParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nclasses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neighbors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothness_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_prune_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abstol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reltol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/dp_hmrf.html#TissueSegmentationParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parameters for tissue segmentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nclasses</strong> – Maximum number of regions to consider. Defaults to the square root of the number of observations.</p></li>
+<li><p><strong>neighbors</strong> – Number of neighbors for the nearest-neighbor graph. Defaults to a fully connected graph (there is
+no speed difference). A value of 0 makes the model ignore spatial information and reduces it to a Poisson
+mixture model with a Dirichlet process prior.</p></li>
+<li><p><strong>smoothness_factor</strong> – Spatial smoothness. Larger values induce more fine-grained segmentations. This value will
+be multiplied with the minimum squared distance within the data set, so it is dimensionless. Defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
+<li><p><strong>class_prune_threshold</strong> – Probability threshold at which unused regions are removed. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p></li>
+<li><p><strong>abstol</strong> – Absolute convergence tolerance. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-12</span></code>.</p></li>
+<li><p><strong>reltol</strong> – Relative convergence tolerance. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-12</span></code>.</p></li>
+<li><p><strong>maxiter</strong> – Maximum number of iterations. Defaults to <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p></li>
+<li><p><strong>gamma_1</strong> – Parameter of the Poisson mean prior, defaults to <code class="docutils literal notranslate"><span class="pre">1e-14</span></code>.</p></li>
+<li><p><strong>gamma_2</strong> – Parameter of the Poisson mean prior, defaults to <code class="docutils literal notranslate"><span class="pre">1e-14</span></code>.</p></li>
+<li><p><strong>eta_1</strong> – Parameter of the Dirichlet process hyperprior, defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>eta_2</strong> – Parameter of the Dirichlet process hyperprior, defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.abstol">
+<span class="sig-name descname"><span class="pre">abstol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-12</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.abstol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.class_prune_threshold">
+<span class="sig-name descname"><span class="pre">class_prune_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-06</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.class_prune_threshold" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.eta_1">
+<span class="sig-name descname"><span class="pre">eta_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.eta_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.eta_2">
+<span class="sig-name descname"><span class="pre">eta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.eta_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.gamma_1">
+<span class="sig-name descname"><span class="pre">gamma_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-14</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.gamma_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.gamma_2">
+<span class="sig-name descname"><span class="pre">gamma_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-14</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.gamma_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.maxiter">
+<span class="sig-name descname"><span class="pre">maxiter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.maxiter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.nclasses">
+<span class="sig-name descname"><span class="pre">nclasses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.nclasses" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.neighbors">
+<span class="sig-name descname"><span class="pre">neighbors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.neighbors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.reltol">
+<span class="sig-name descname"><span class="pre">reltol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-12</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.reltol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.smoothness_factor">
+<span class="sig-name descname"><span class="pre">smoothness_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters.smoothness_factor" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.dp_hmrf.</span></span><span class="sig-name descname"><span class="pre">TissueSegmentationStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/dp_hmrf.html#TissueSegmentationStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus.AbsoluteToleranceReached">
+<span class="sig-name descname"><span class="pre">AbsoluteToleranceReached</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus.AbsoluteToleranceReached" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus.MaximumIterationsReached">
+<span class="sig-name descname"><span class="pre">MaximumIterationsReached</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus.MaximumIterationsReached" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus.RelativeToleranceReached">
+<span class="sig-name descname"><span class="pre">RelativeToleranceReached</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentationStatus.RelativeToleranceReached" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.dp_hmrf.tissue_segmentation">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.dp_hmrf.</span></span><span class="sig-name descname"><span class="pre">tissue_segmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata:</span> <span class="pre">~anndata._core.anndata.AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizefactors:</span> <span class="pre">~numpy.ndarray</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params:</span> <span class="pre">~spider.SpatialDE2.dp_hmrf.TissueSegmentationParameters</span> <span class="pre">=</span> <span class="pre">TissueSegmentationParameters(nclasses=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neighbors=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothness_factor=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_prune_threshold=1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abstol=1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reltol=1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_1=1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_2=1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_1=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta_2=1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels:</span> <span class="pre">~numpy.ndarray</span> <span class="pre">|</span> <span class="pre">~tensorflow.python.framework.ops.Tensor</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng:</span> <span class="pre">~numpy.random._generator.Generator</span> <span class="pre">=</span> <span class="pre">Generator(PCG64)</span> <span class="pre">at</span> <span class="pre">0x7FF8688A9AC0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy=False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation" title="spider.SpatialDE2.dp_hmrf.TissueSegmentation"><span class="pre">TissueSegmentation</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">AnnData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/dp_hmrf.html#tissue_segmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.dp_hmrf.tissue_segmentation" title="Permalink to this definition"></a></dt>
+<dd><p>Segment a spatial transcriptomics dataset into distinct spatial regions.</p>
+<p>Uses a hidden Markov random field (HMRF) model with a Poisson likelihood. A Dirichlet process prior allows
+to automatically determine the number of distinct regions in the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>genes</strong> – List of genes to base the segmentation on. Defaults to all genes.</p></li>
+<li><p><strong>sizefactors</strong> – Scaling factors for the observations. Defaults to total read counts.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>params</strong> – Parameters for the algorithm, e.g. prior distributions, spatial smoothness, etc.</p></li>
+<li><p><strong>labels</strong> – Initial label for each observation. Defaults to a random initialization.</p></li>
+<li><p><strong>rng</strong> – Random number generator.</p></li>
+<li><p><strong>copy</strong> – Whether to return a copy of <code class="docutils literal notranslate"><span class="pre">adata</span></code> with results or write the results into <code class="docutils literal notranslate"><span class="pre">adata</span></code>
+in-place.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple. The first element is a <a class="reference internal" href="#spider.SpatialDE2.dp_hmrf.TissueSegmentation" title="spider.SpatialDE2.dp_hmrf.TissueSegmentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">TissueSegmentation</span></code></a>, the second is <code class="docutils literal notranslate"><span class="pre">None</span></code> if <code class="docutils literal notranslate"><span class="pre">copy</span> <span class="pre">==</span> <span class="pre">False</span></code>
+or an <code class="docutils literal notranslate"><span class="pre">AnnData</span></code> object. Region labels will be in <code class="docutils literal notranslate"><span class="pre">adata.obs[&quot;segmentation_labels&quot;]</span></code> and region
+probabilities in <code class="docutils literal notranslate"><span class="pre">adata.obsm[&quot;segmentation_class_probabilities&quot;]</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-spider.SpatialDE2.gaussian_process">
+<span id="spider-spatialde2-gaussian-process-module"></span><h2>spider.SpatialDE2.gaussian_process module<a class="headerlink" href="#module-spider.SpatialDE2.gaussian_process" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">GP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#GP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GP" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GP.GPR">
+<span class="sig-name descname"><span class="pre">GPR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GP.GPR" title="Permalink to this definition"></a></dt>
+<dd><p>Dense Gaussian process.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GP.SGPR">
+<span class="sig-name descname"><span class="pre">SGPR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GP.SGPR" title="Permalink to this definition"></a></dt>
+<dd><p>Sparse Gaussian process.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GPControl">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">GPControl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#spider.SpatialDE2.gaussian_process.GP" title="spider.SpatialDE2.gaussian_process.GP"><span class="pre">GP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ipm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#spider.SpatialDE2.gaussian_process.SGPIPM" title="spider.SpatialDE2.gaussian_process.SGPIPM"><span class="pre">SGPIPM</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SGPIPM.grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncomponents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ard</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ninducers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#GPControl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GPControl" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parameters for Gaussian process fitting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gp</strong> – Type of GP to fit.</p></li>
+<li><p><strong>ipm</strong> – Inducing point method. Only used if <code class="docutils literal notranslate"><span class="pre">gp</span> <span class="pre">==</span> <span class="pre">GP.SGPR</span></code>.</p></li>
+<li><p><strong>ncomponents</strong> – Number of kernel components.</p></li>
+<li><p><strong>ard</strong> – Whether to use automatic relevance determination. This amounts to having one
+lengthscale per spatial dimension.</p></li>
+<li><p><strong>ninducers</strong> – Number of inducing points.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GPControl.ard">
+<span class="sig-name descname"><span class="pre">ard</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GPControl.ard" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GPControl.gp">
+<span class="sig-name descname"><span class="pre">gp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#spider.SpatialDE2.gaussian_process.GP" title="spider.SpatialDE2.gaussian_process.GP"><span class="pre">GP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GPControl.gp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GPControl.ipm">
+<span class="sig-name descname"><span class="pre">ipm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#spider.SpatialDE2.gaussian_process.SGPIPM" title="spider.SpatialDE2.gaussian_process.SGPIPM"><span class="pre">SGPIPM</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GPControl.ipm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GPControl.ncomponents">
+<span class="sig-name descname"><span class="pre">ncomponents</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GPControl.ncomponents" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.GPControl.ninducers">
+<span class="sig-name descname"><span class="pre">ninducers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.GPControl.ninducers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.SGPIPM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">SGPIPM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#SGPIPM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.SGPIPM" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.SGPIPM.free">
+<span class="sig-name descname"><span class="pre">free</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.SGPIPM.free" title="Permalink to this definition"></a></dt>
+<dd><p>Inducing points are initialized randomly and their positions are optimized together with the other parameters.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.SGPIPM.grid">
+<span class="sig-name descname"><span class="pre">grid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.SGPIPM.grid" title="Permalink to this definition"></a></dt>
+<dd><p>Inducing points are placed in a regular grid.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.SGPIPM.random">
+<span class="sig-name descname"><span class="pre">random</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.SGPIPM.random" title="Permalink to this definition"></a></dt>
+<dd><p>Inducing points are placed at random locations.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.fit">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata:</span> <span class="pre">~anndata._core.anndata.AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control:</span> <span class="pre">~spider.SpatialDE2.gaussian_process.GPControl</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">GPControl(gp=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ipm=&lt;SGPIPM.grid:</span> <span class="pre">3&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncomponents=5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ard=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ninducers=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_space:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng:</span> <span class="pre">~numpy.random._generator.Generator</span> <span class="pre">=</span> <span class="pre">Generator(PCG64)</span> <span class="pre">at</span> <span class="pre">0x7FF8688E0900</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fits Gaussian processes to genes.</p>
+<p>This dispatches to <a class="reference internal" href="#spider.SpatialDE2.gaussian_process.fit_fast" title="spider.SpatialDE2.gaussian_process.fit_fast"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_fast()</span></code></a> if <code class="docutils literal notranslate"><span class="pre">control</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, otherwise to <a class="reference internal" href="#spider.SpatialDE2.gaussian_process.fit_detailed" title="spider.SpatialDE2.gaussian_process.fit_detailed"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_detailed()</span></code></a>.
+All arguments are forwarded.</p>
+<p>Returns: A Pandas DataFrame with the results.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.fit_detailed">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">fit_detailed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata:</span> <span class="pre">~anndata._core.anndata.AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizefactor_col:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control:</span> <span class="pre">~spider.SpatialDE2.gaussian_process.GPControl</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">GPControl(gp=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ipm=&lt;SGPIPM.grid:</span> <span class="pre">3&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncomponents=5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ard=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ninducers=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng:</span> <span class="pre">~numpy.random._generator.Generator</span> <span class="pre">=</span> <span class="pre">Generator(PCG64)</span> <span class="pre">at</span> <span class="pre">0x7FF868AAB820</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataSetResults</span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#fit_detailed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.fit_detailed" title="Permalink to this definition"></a></dt>
+<dd><p>Fits Gaussian processes to genes.</p>
+<p>A Gaussian process based on highly interpretable spectral mixture kernels (Wilson et al. 2013, Wilson 2014) is fitted
+separately to each gene. Sparse GPs are used on large datasets (&gt;1000 observations) to improve speed.
+This uses a Gaussian likelihood and requires appropriate data normalization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>genes</strong> – List of genes to base the analysis on. Defaults to all genes.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>normalized</strong> – Whether the data are already normalized to an approximately Gaussian likelihood.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, they will be normalized using the workflow from Svensson et al, 2018.</p></li>
+<li><p><strong>sizefactor_col</strong> – Column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> to be used for normalization. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, total number of
+counts per spot will be used.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>control</strong> – Parameters for the Gaussian process, e.g. number of kernel components, number of inducing points.</p></li>
+<li><p><strong>rng</strong> – Random number generator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary with the results. The dictionary has an additional method <code class="docutils literal notranslate"><span class="pre">to_df</span></code>, which returns a DataFrame
+with the key results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.fit_fast">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">fit_fast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizefactor_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#fit_fast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.fit_fast" title="Permalink to this definition"></a></dt>
+<dd><p>Fits Gaussian processes to genes.</p>
+<p>This uses the inflexible but fast technique of Svensson et al. (2018). In particular, the kernel lengthscale is not
+optimized, but must be given beforehand. Multiple kernel functions and lengthscales can be specified, the best-fitting
+model will be retained. To further improve speed, sparse GPs are used for large (&gt;1000 observations) data sets with
+inducing points located on a regular grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>genes</strong> – List of genes to base the analysis on. Defaults to all genes.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>normalized</strong> – Whether the data are already normalized to an approximately Gaussian likelihood.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, they will be normalized using the workflow from Svensson et al, 2018.</p></li>
+<li><p><strong>sizefactor_col</strong> – Column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> to be used for normalization. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, total number of
+counts per spot will be used.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>sparse</strong> – Whether to use sparse GPs. Slightly faster on large datasets, but less precise.
+Defaults to sparse GPs if more than 1000 data points are given.</p></li>
+<li><p><strong>kernel_space</strong> – <p>Kernels to test against. Dictionary with the name of the kernel function as key and list of
+lengthscales (if applicable) as values. Currently, three kernel functions are known:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SE</span></code>, the squared exponential kernel <span class="math notranslate nohighlight">\(k(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}; l) = \exp\left(-\frac{\lVert \boldsymbol{x}^{(1)} - \boldsymbol{x}^{(2)} \rVert}{l^2}\right)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PER</span></code>, the periodic kernel <span class="math notranslate nohighlight">\(k(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}; l) = \cos\left(2 \pi \frac{\sum_i (x^{(1)}_i - x^{(2)}_i)}{l}\right)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linear</span></code>, the linear kernel <span class="math notranslate nohighlight">\(k(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}) = (\boldsymbol{x}^{(1)})^\top \boldsymbol{x}^{(2)}\)</span></p></li>
+</ul>
+<p>By default, 5 squared exponential and 5 periodic kernels with lengthscales spanning the range of the
+data will be used.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Pandas DataFrame with the results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.fit_model">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">fit_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#fit_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.fit_model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.gaussian_process.inducers_grid">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.gaussian_process.</span></span><span class="sig-name descname"><span class="pre">inducers_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ninducers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spider/SpatialDE2/gaussian_process.html#inducers_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.gaussian_process.inducers_grid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-spider.SpatialDE2.io">
+<span id="spider-spatialde2-io-module"></span><h2>spider.SpatialDE2.io module<a class="headerlink" href="#module-spider.SpatialDE2.io" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.io.read_spaceranger">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.io.</span></span><span class="sig-name descname"><span class="pre">read_spaceranger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spaceranger_out_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AnnData</span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/io.html#read_spaceranger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.io.read_spaceranger" title="Permalink to this definition"></a></dt>
+<dd><p>Read 10x SpaceRanger output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spaceranger_out_dir</strong> – Path to the directory with SpaceRanger output.</p></li>
+<li><p><strong>read_images</strong> – Whether to also read images into memory.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An annotated data matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-spider.SpatialDE2.svca">
+<span id="spider-spatialde2-svca-module"></span><h2>spider.SpatialDE2.svca module<a class="headerlink" href="#module-spider.SpatialDE2.svca" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.svca.fit_spatial_interactions">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.svca.</span></span><span class="sig-name descname"><span class="pre">fit_spatial_interactions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ard</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizefactors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/svca.html#fit_spatial_interactions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.svca.fit_spatial_interactions" title="Permalink to this definition"></a></dt>
+<dd><p>Estimate magnitude of spatial cell-cell interactions using an SVCA model (ARnol, 2019).</p>
+<p>In contrast to the original publication, which used a Gaussian approximation, this fits
+a Poisson GLMM. This function is intendend to be used after <a class="reference internal" href="#spider.SpatialDE2.svca.test_spatial_interactions" title="spider.SpatialDE2.svca.test_spatial_interactions"><code class="xref py py-func docutils literal notranslate"><span class="pre">test_spatial_interactions()</span></code></a>
+to analyse the genes showing significant cell-cell interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>genes</strong> – List of genes to analyze. Defaults to all genes.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>ard</strong> – Whether to use automatic relevance determination for the kernel. This amounts to
+a separate lengthscale for each spatial dimension.</p></li>
+<li><p><strong>sizefactors</strong> – Scaling factors for the observations. Defaults to total read counts.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: A Pandas DataFrame with the results.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spider.SpatialDE2.svca.test_spatial_interactions">
+<span class="sig-prename descclassname"><span class="pre">spider.SpatialDE2.svca.</span></span><span class="sig-name descname"><span class="pre">test_spatial_interactions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spatial'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ard</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizefactors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">AnnData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/spider/SpatialDE2/svca.html#test_spatial_interactions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spider.SpatialDE2.svca.test_spatial_interactions" title="Permalink to this definition"></a></dt>
+<dd><p>Fit an SVCA model (Arnol, 2019) and test for spatial cell-cell interactions.</p>
+<p>In contrast to the original publication, which used a Gaussian approximation with a
+likelihood ratio test, this fits a Poisson GLMM and uses a score test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> – The annotated data matrix.</p></li>
+<li><p><strong>layer</strong> – Name of the AnnData object layer to use. By default <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> is used.</p></li>
+<li><p><strong>spatial_key</strong> – Key in <code class="docutils literal notranslate"><span class="pre">adata.obsm</span></code> where the spatial coordinates are stored.</p></li>
+<li><p><strong>ard</strong> – Whether to use automatic relevance determination for the kernel. This amounts to
+a separate lengthscale for each spatial dimension.</p></li>
+<li><p><strong>sizefactors</strong> – Scaling factors for the observations. Defaults to total read counts.</p></li>
+<li><p><strong>copy</strong> – Whether to return a copy of <code class="docutils literal notranslate"><span class="pre">adata</span></code> with results or write the results into <code class="docutils literal notranslate"><span class="pre">adata</span></code>
+in-place.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple. The first element is a Pandas DataFrame with the test results, the second is <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if <code class="docutils literal notranslate"><span class="pre">copy</span> <span class="pre">==</span> <span class="pre">False</span></code> or an <code class="docutils literal notranslate"><span class="pre">AnnData</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-spider.SpatialDE2">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spider.SpatialDE2" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Li Shiying.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
