@@ -4,3 +4,4 @@ nbsphinx>=0.9.1
 sphinx-gallery>=0.13.0
 recommonmark
 sphinx_rtd_theme
+spider-st>=0.2.3
